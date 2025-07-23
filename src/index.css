@@ -41,6 +41,20 @@
     --water: 210 100% 58%;
     --grass: 100 54% 52%;
     --electric: 51 95% 63%;
+    --steel: 204 60% 65%;      /* #6FB7DD */
+    --rock: 54 27% 67%;        /* #C0BC8C */
+    --psychic: 344 100% 72%;   /* #FF6885 */
+    --poison: 267 62% 56%;     /* #9E4FD6 */
+    --normal: 210 2% 67%;      /* #ABACAC */
+    --ice: 188 100% 63%;       /* #44DFFF */
+    --ground: 34 50% 47%;      /* #B17D3B */
+    --ghost: 277 24% 38%;      /* #734876 */
+    --flying: 205 100% 85%;    /* #9CD3FF */
+    --bug: 64 63% 41%;         /* #A8AE26 */
+    --dark: 20 7% 31%;         /* #534B4B */
+    --dragon: 235 66% 62%;     /* #5867E1 */
+    --fairy: 300 100% 86%;     /* #FFB5FF */
+    --fighting: 36 100% 51%;   /* #FFA702 */
 
     /* Neumorphic effectiveness colors */
     --super-effective: 125 70% 50%;
@@ -101,6 +115,20 @@
     --water: 210 100% 58%;
     --grass: 100 54% 52%;
     --electric: 51 95% 63%;
+    --steel: 204 60% 65%;      /* #6FB7DD */
+    --rock: 54 27% 67%;        /* #C0BC8C */
+    --psychic: 344 100% 72%;   /* #FF6885 */
+    --poison: 267 62% 56%;     /* #9E4FD6 */
+    --normal: 210 2% 67%;      /* #ABACAC */
+    --ice: 188 100% 63%;       /* #44DFFF */
+    --ground: 34 50% 47%;      /* #B17D3B */
+    --ghost: 277 24% 38%;      /* #734876 */
+    --flying: 205 100% 85%;    /* #9CD3FF */
+    --bug: 64 63% 41%;         /* #A8AE26 */
+    --dark: 20 7% 31%;         /* #534B4B */
+    --dragon: 235 66% 62%;     /* #5867E1 */
+    --fairy: 300 100% 86%;     /* #FFB5FF */
+    --fighting: 36 100% 51%;   /* #FFA702 */
 
     /* Dark mode effectiveness colors */
     --super-effective: 125 70% 50%;
