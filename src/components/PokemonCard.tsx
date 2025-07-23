@@ -31,7 +31,7 @@ const PokemonCard = ({ pokemon, isAttacker = false, className = '' }: PokemonCar
   const isLeftFacing = SpriteProvider.isLeftFacing(pokemon.name);
   const shouldFlip = isLeftFacing ? !isAttacker : isAttacker;
   return (
-    <Card className={`p-6 text-center shadow-card hover:shadow-pokemon-glow transition-all duration-500 border-0 ${isAttacker ? 'animate-slide-in' : ''} ${className}`}>
+    <Card className={`p-6 text-center shadow-card hover:shadow-pokemon-glow transition-all duration-500 border-0 ${isAttacker ? 'animate-slide-in' : 'animate-shake'} ${className}`}>
       <div className="relative mb-6">
         <div className="bg-gradient-to-br from-background to-muted rounded-2xl p-2 shadow-card-inset overflow-hidden w-32 h-32 mx-auto relative">
           <img

@@ -32,7 +32,7 @@ const BattleArena = ({ attacker, defender, showResult }: BattleArenaProps) => {
       <div className="flex items-center justify-center gap-8 flex-wrap">
         {/* Attacker Pokemon */}
         <div className="flex-1 min-w-[220px] max-w-[300px]">
-          <PokemonCard pokemon={attacker} isAttacker />
+          <PokemonCard key={attacker.id + '-' + attacker.name} pokemon={attacker} isAttacker />
         </div>
 
         {/* Battle Arrow */}
@@ -61,7 +61,7 @@ const BattleArena = ({ attacker, defender, showResult }: BattleArenaProps) => {
 
         {/* Defender Pokemon */}
         <div className="flex-1 min-w-[220px] max-w-[300px]">
-          <PokemonCard pokemon={defender} />
+          <PokemonCard key={defender.id + '-' + defender.name} pokemon={defender} />
         </div>
       </div>
 
