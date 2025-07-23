@@ -1,6 +1,8 @@
-import { ChevronRight, Zap } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import PokemonCard from './PokemonCard';
 import { Card } from '@/components/ui/card';
+import { typeColorMap } from './PokemonCard';
+import { SpriteProvider } from '@/lib/SpriteProvider';
 
 interface BattleArenaProps {
   attacker: {
@@ -22,6 +24,8 @@ interface BattleArenaProps {
 }
 
 const BattleArena = ({ attacker, defender, showResult }: BattleArenaProps) => {
+  const arrowColor = typeColorMap[attacker.type as keyof typeof typeColorMap] || 'primary';
+  const typeSymbol = SpriteProvider.getTypeSpriteSymbol(attacker.type);
   return (
     <Card className="p-8 shadow-card border-0">
       <div className="flex items-center justify-center gap-8 flex-wrap">
@@ -35,19 +39,22 @@ const BattleArena = ({ attacker, defender, showResult }: BattleArenaProps) => {
           <div className="text-lg font-bold text-muted-foreground uppercase tracking-wider">
             Attacks
           </div>
-          <div className={`flex items-center justify-center p-6 rounded-2xl transition-all duration-500 shadow-button ${
+          <div className={`flex items-center justify-center p-6 rounded-2xl transition-all duration-500 shadow-button bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-20 border border-gray-100 ${
             showResult 
               ? showResult.correct 
                 ? 'bg-super-effective shadow-button-pressed animate-pulse-glow' 
                 : 'bg-not-very-effective shadow-button-pressed'
-              : `bg-gradient-to-br from-${attacker.type} to-${attacker.type}/80 hover:from-${attacker.type}/80 hover:to-${attacker.type}`
+              : `bg-gradient-to-br from-${attacker.type} to-${attacker.type}/30 hover:from-${attacker.type}/30 hover:to-${attacker.type}`
           }`}>
-            <ChevronRight className="w-10 h-10 text-white drop-shadow-sm" />
+            <ChevronRight className={`w-10 h-10 drop-shadow-sm text-white`} />
           </div>
           <div className="flex items-center gap-2">
-            <Zap className="w-6 h-6 text-accent animate-pulse" />
-            <div className="w-2 h-2 bg-accent rounded-full animate-ping"></div>
-            <div className="w-2 h-2 bg-accent rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
+          {typeSymbol && (
+              <img src={typeSymbol} alt={`${attacker.type} type`} className="w-8 h-8" />
+            )}
+            <div className={`w-2 h-2 bg-${attacker.type} rounded-full animate-ping`}></div>
+            <div className={`w-2 h-2 bg-${attacker.type} rounded-full animate-ping`} style={{ animationDelay: '0.15s' }}></div>
+            <div className={`w-2 h-2 bg-${attacker.type} rounded-full animate-ping`} style={{ animationDelay: '0.2s' }}></div>
           </div>
         </div>
 

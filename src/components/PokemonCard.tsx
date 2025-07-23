@@ -3,7 +3,7 @@ import { Card } from '@/components/ui/card';
 // Import type icons
 import { SpriteProvider } from '@/lib/SpriteProvider';
 
-const typeColorMap = {
+export const typeColorMap = {
   fire: 'fire',
   water: 'water',
   grass: 'grass',
