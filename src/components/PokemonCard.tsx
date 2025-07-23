@@ -29,12 +29,12 @@ const PokemonCard = ({ pokemon, isAttacker = false, className = '' }: PokemonCar
   return (
     <Card className={`p-6 text-center shadow-card hover:shadow-pokemon-glow transition-all duration-500 border-0 ${isAttacker ? 'animate-slide-in' : ''} ${className}`}>
       <div className="relative mb-6">
-        <div className="bg-gradient-to-br from-background to-muted rounded-2xl p-2 shadow-card-inset overflow-hidden w-32 h-32 mx-auto flex items-end justify-center">
+        <div className="bg-gradient-to-br from-background to-muted rounded-2xl p-2 shadow-card-inset overflow-hidden w-32 h-32 mx-auto relative">
           <img
             src={spriteUrl}
             alt={pokemon.name}
-            className={`w-full h-full object-contain scale-140${isAttacker ? ' -scale-x-100' : ''}`}
-            style={{ objectPosition: 'center bottom', transform: `scale(1.4)${isAttacker ? ' scaleX(-1)' : ''}`, animationDelay: isAttacker ? '0.2s' : '0.4s' }}
+            className={`absolute left-0 right-0 mx-auto object-contain${isAttacker ? ' -scale-x-100' : ''}`}
+            style={{ width: '100%', bottom: 0, objectPosition: 'center bottom', transform: `scale(1.5)${isAttacker ? ' scaleX(-1)' : ''}`, transformOrigin: 'center bottom', animationDelay: isAttacker ? '0.2s' : '0.4s', position: 'absolute' }}
           />
         </div>
         {isAttacker && (
