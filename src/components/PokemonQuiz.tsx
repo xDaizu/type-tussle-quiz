@@ -8,37 +8,10 @@ import PokemonCard from './PokemonCard';
 import BattleArena from './BattleArena';
 import ScoreDisplay from './ScoreDisplay';
 import { getTypeEffectiveness, Effectiveness } from '@/lib/utils';
-
-// Pokemon data
-export const POKEMON = [
-  {
-    id: 'charmander',
-    name: 'Charmander',
-    type: PokemonType.Fire,
-    sprite: '/src/assets/charmander.png'
-  },
-  {
-    id: 'squirtle',
-    name: 'Squirtle',
-    type: PokemonType.Water,
-    sprite: '/src/assets/squirtle.png'
-  },
-  {
-    id: 'chikorita',
-    name: 'Chikorita',
-    type: PokemonType.Grass,
-    sprite: '/src/assets/chikorita.png'
-  },
-  {
-    id: 'pikachu',
-    name: 'Pikachu',
-    type: PokemonType.Electric,
-    sprite: '/src/assets/pikachu.png'
-  }
-] as const;
+import { PokemonProvider } from '@/lib/PokemonProvider';
 
 
-type Pokemon = typeof POKEMON[number];
+type Pokemon = ReturnType<typeof PokemonProvider.getAll>[number];
 type EffectivenessType = Effectiveness;
 
 const PokemonQuiz = () => {
@@ -49,9 +22,11 @@ const PokemonQuiz = () => {
   const [gameOver, setGameOver] = useState(false);
   const [showResult, setShowResult] = useState<{correct: boolean, effectiveness: EffectivenessType} | null>(null);
 
+  const pokemonList = PokemonProvider.getAll();
+
   const generateBattle = () => {
-    const randomAttacker = POKEMON[Math.floor(Math.random() * POKEMON.length)];
-    const randomDefender = POKEMON[Math.floor(Math.random() * POKEMON.length)];
+    const randomAttacker = PokemonProvider.getRandom();
+    const randomDefender = PokemonProvider.getRandom();
     setAttacker(randomAttacker);
     setDefender(randomDefender);
     setShowResult(null);

@@ -103,13 +103,17 @@ export class SpriteProvider {
     return `${baseUrl}${back}${genderPath}${id}.png`;
   }
 
-  static getPokemonModernSprite(pokemonName: string, isAttacker: boolean): string {
-    // Find the Pokémon by name in spriteCDNMap (case-insensitive)
-    const entry = Object.entries(spriteCDNMap).find(([name]) => name.toLowerCase() === pokemonName.toLowerCase());
-    if (!entry) throw new Error(`No Pokémon found with name: ${pokemonName}`);
-    const [name] = entry;
-    return `https://img.pokemondb.net/sprites/scarlet-violet/normal/${name.toLowerCase()}.png`;
+  static getPokemonModernSprite(pokemonName: string): string {
+    return `https://img.pokemondb.net/sprites/scarlet-violet/normal/${pokemonName.toLowerCase()}.png`;
   }
+
+  
+  static getPokemonHomeSprite(pokemonName: string, sex?: 'male' | 'female'): string {
+    const baseName = pokemonName.toLowerCase();
+    const suffix = sex === 'female' ? '-f' : '';
+    return `https://img.pokemondb.net/sprites/home/normal/${baseName}${suffix}.png`;
+  }
+
 
   static getPokemonModernSpriteByType(type: PokemonType): string {
     // Get all Pokémon names with the given type

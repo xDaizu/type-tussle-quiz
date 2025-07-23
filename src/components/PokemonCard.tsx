@@ -1,4 +1,5 @@
 import { Card } from '@/components/ui/card';
+import { useState } from 'react';
 
 // Import type icons
 import { SpriteProvider } from '@/lib/SpriteProvider';
@@ -23,9 +24,10 @@ interface PokemonCardProps {
 }
 
 const PokemonCard = ({ pokemon, isAttacker = false, className = '' }: PokemonCardProps) => {
+  const [sex, setSex] = useState<'male' | 'female'>(() => (Math.random() < 0.7 ? 'female' : 'male'));
   const typeColor = typeColorMap[pokemon.type as keyof typeof typeColorMap];
   // Use SpriteProvider to get the correct sprite URL
-  const spriteUrl = SpriteProvider.getPokemonModernSprite(pokemon.name, isAttacker);
+  const spriteUrl = SpriteProvider.getPokemonHomeSprite(pokemon.name, sex);
   return (
     <Card className={`p-6 text-center shadow-card hover:shadow-pokemon-glow transition-all duration-500 border-0 ${isAttacker ? 'animate-slide-in' : ''} ${className}`}>
       <div className="relative mb-6">
@@ -33,8 +35,13 @@ const PokemonCard = ({ pokemon, isAttacker = false, className = '' }: PokemonCar
           <img
             src={spriteUrl}
             alt={pokemon.name}
-            className={`absolute left-0 right-0 mx-auto object-contain${isAttacker ? ' -scale-x-100' : ''}`}
-            style={{ width: '100%', bottom: 0, objectPosition: 'center bottom', transform: `scale(1.5)${isAttacker ? ' scaleX(-1)' : ''}`, transformOrigin: 'center bottom', animationDelay: isAttacker ? '0.2s' : '0.4s', position: 'absolute' }}
+            className={`absolute left-0 right-0 mx-auto object-contain${isAttacker ? ' -scale-x-100' : ''}}`}
+            style={{ width: '100%', bottom: 0, objectPosition: 'center bottom', transform: `scale(1.0) ${isAttacker ? ' scaleX(-1)' : ''}`, transformOrigin: 'center bottom', animationDelay: isAttacker ? '0.2s' : '0.4s', position: 'absolute' }}
+            onError={e => {
+                setSex('male');
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = SpriteProvider.getPokemonHomeSprite(pokemon.name, 'male');
+            }}
           />
         </div>
         {isAttacker && (
