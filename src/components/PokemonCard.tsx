@@ -28,11 +28,11 @@ const PokemonCard = ({ pokemon, isAttacker = false, className = '' }: PokemonCar
   return (
     <Card className={`p-6 text-center shadow-card hover:shadow-pokemon-glow transition-all duration-500 border-0 ${isAttacker ? 'animate-slide-in' : ''} ${className}`}>
       <div className="relative mb-6">
-        <div className="bg-gradient-to-br from-background to-muted rounded-2xl p-4 shadow-card-inset">
+        <div className="bg-gradient-to-br from-background to-muted rounded-2xl p-2 shadow-card-inset">
           <img
             src={spriteUrl}
             alt={pokemon.name}
-            className="w-20 h-20 mx-auto object-contain animate-bounce-in"
+            className="w-28 h-28 mx-auto object-contain animate-bounce-in"
             style={{ animationDelay: isAttacker ? '0.2s' : '0.4s' }}
           />
         </div>

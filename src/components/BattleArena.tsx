@@ -40,7 +40,7 @@ const BattleArena = ({ attacker, defender, showResult }: BattleArenaProps) => {
               ? showResult.correct 
                 ? 'bg-super-effective shadow-button-pressed animate-pulse-glow' 
                 : 'bg-not-very-effective shadow-button-pressed'
-              : 'bg-gradient-to-br from-accent to-primary hover:from-primary hover:to-accent'
+              : `bg-gradient-to-br from-${attacker.type} to-${attacker.type}/80 hover:from-${attacker.type}/80 hover:to-${attacker.type}`
           }`}>
             <ChevronRight className="w-10 h-10 text-white drop-shadow-sm" />
           </div>
