@@ -52,6 +52,16 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Pokemon type colors
+				fire: 'hsl(var(--fire))',
+				water: 'hsl(var(--water))',
+				grass: 'hsl(var(--grass))',
+				electric: 'hsl(var(--electric))',
+				// Effectiveness colors
+				'super-effective': 'hsl(var(--super-effective))',
+				'not-very-effective': 'hsl(var(--not-very-effective))',
+				'no-effect': 'hsl(var(--no-effect))',
+				'normal-effective': 'hsl(var(--normal-effective))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -67,6 +77,13 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			backgroundImage: {
+				'arena-gradient': 'var(--arena-gradient)',
+			},
+			boxShadow: {
+				'card': 'var(--card-shadow)',
+				'pokemon-glow': 'var(--pokemon-glow)',
 			},
 			keyframes: {
 				'accordion-down': {
@@ -84,11 +101,27 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'bounce-in': {
+					'0%': { transform: 'scale(0.8)', opacity: '0' },
+					'50%': { transform: 'scale(1.1)', opacity: '0.8' },
+					'100%': { transform: 'scale(1)', opacity: '1' }
+				},
+				'slide-in': {
+					'0%': { transform: 'translateX(-100%)', opacity: '0' },
+					'100%': { transform: 'translateX(0)', opacity: '1' }
+				},
+				'pulse-glow': {
+					'0%, 100%': { boxShadow: '0 0 20px hsl(var(--accent) / 0.3)' },
+					'50%': { boxShadow: '0 0 30px hsl(var(--accent) / 0.6)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'bounce-in': 'bounce-in 0.6s ease-out',
+				'slide-in': 'slide-in 0.5s ease-out',
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite'
 			}
 		}
 	},
