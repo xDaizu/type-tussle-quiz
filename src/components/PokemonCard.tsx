@@ -1,31 +1,7 @@
 import { Card } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-
-// Import Pokemon sprites
-import charmanderSprite from '@/assets/charmander.png';
-import squirtleSprite from '@/assets/squirtle.png';
-import chikoritaSprite from '@/assets/chikorita.png';
-import pikachuSprite from '@/assets/pikachu.png';
 
 // Import type icons
-import fireTypeIcon from '@/assets/fire-type.png';
-import waterTypeIcon from '@/assets/water-type.png';
-import grassTypeIcon from '@/assets/grass-type.png';
-import electricTypeIcon from '@/assets/electric-type.png';
-
-const spriteMap = {
-  charmander: charmanderSprite,
-  squirtle: squirtleSprite,
-  chikorita: chikoritaSprite,
-  pikachu: pikachuSprite,
-};
-
-const typeIconMap = {
-  fire: fireTypeIcon,
-  water: waterTypeIcon,
-  grass: grassTypeIcon,
-  electric: electricTypeIcon,
-};
+import { SpriteProvider } from '@/lib/SpriteProvider';
 
 const typeColorMap = {
   fire: 'fire',
@@ -47,13 +23,14 @@ interface PokemonCardProps {
 
 const PokemonCard = ({ pokemon, isAttacker = false, className = '' }: PokemonCardProps) => {
   const typeColor = typeColorMap[pokemon.type as keyof typeof typeColorMap];
-  
+  // Use SpriteProvider to get the correct sprite URL
+  const spriteUrl = SpriteProvider.getPokemonSprite(pokemon.id, isAttacker);
   return (
     <Card className={`p-6 text-center shadow-card hover:shadow-pokemon-glow transition-all duration-500 border-0 ${isAttacker ? 'animate-slide-in' : ''} ${className}`}>
       <div className="relative mb-6">
         <div className="bg-gradient-to-br from-background to-muted rounded-2xl p-4 shadow-card-inset">
           <img
-            src={spriteMap[pokemon.id as keyof typeof spriteMap]}
+            src={spriteUrl}
             alt={pokemon.name}
             className="w-20 h-20 mx-auto object-contain animate-bounce-in"
             style={{ animationDelay: isAttacker ? '0.2s' : '0.4s' }}
@@ -71,7 +48,7 @@ const PokemonCard = ({ pokemon, isAttacker = false, className = '' }: PokemonCar
       <div className="flex flex-col items-center gap-3">
         <div className="bg-gradient-to-r from-background to-muted p-2 rounded-xl shadow-card-inset">
           <img
-            src={typeIconMap[pokemon.type as keyof typeof typeIconMap]}
+            src={SpriteProvider.getTypeSpriteWithWord(pokemon.type)}
             alt={`${pokemon.type} type`}
             className="h-8 w-auto object-contain"
           />

@@ -37,10 +37,10 @@
     --sidebar-ring: 250 60% 65%;
 
     /* Improved Pokemon type colors for better readability */
-    --fire: 15 85% 65%;
-    --water: 210 80% 65%;
-    --grass: 125 55% 55%;
-    --electric: 45 90% 65%;
+    --fire: 20 85% 59%;
+    --water: 210 100% 58%;
+    --grass: 100 54% 52%;
+    --electric: 51 95% 63%;
 
     /* Neumorphic effectiveness colors */
     --super-effective: 125 70% 50%;
@@ -97,10 +97,10 @@
     --sidebar-ring: 250 60% 70%;
 
     /* Dark mode Pokemon type colors */
-    --fire: 15 85% 65%;
-    --water: 210 80% 65%;
-    --grass: 125 55% 55%;
-    --electric: 45 90% 65%;
+    --fire: 20 85% 59%;
+    --water: 210 100% 58%;
+    --grass: 100 54% 52%;
+    --electric: 51 95% 63%;
 
     /* Dark mode effectiveness colors */
     --super-effective: 125 70% 50%;

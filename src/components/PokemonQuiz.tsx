@@ -58,7 +58,7 @@ const TYPE_EFFECTIVENESS = {
   electric: {
     water: 2,    // Electric > Water
     fire: 1,     // Electric = Fire
-    grass: 1,    // Electric = Grass
+    grass: 0.5,    // Electric = Grass
     electric: 1  // Electric = Electric
   }
 } as const;
