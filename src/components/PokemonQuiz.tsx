@@ -6,6 +6,7 @@ import { ChevronRight, RotateCcw, Trophy } from 'lucide-react';
 import PokemonCard from './PokemonCard';
 import BattleArena from './BattleArena';
 import ScoreDisplay from './ScoreDisplay';
+import { getTypeEffectiveness, Effectiveness } from '@/lib/utils';
 
 // Pokemon data
 export const POKEMON = [
@@ -35,36 +36,9 @@ export const POKEMON = [
   }
 ] as const;
 
-// Type effectiveness chart
-const TYPE_EFFECTIVENESS = {
-  fire: {
-    grass: 2,    // Fire > Grass
-    water: 0.5,  // Fire < Water
-    fire: 1,     // Fire = Fire
-    electric: 1  // Fire = Electric
-  },
-  water: {
-    fire: 2,     // Water > Fire
-    grass: 0.5,  // Water < Grass
-    water: 1,    // Water = Water
-    electric: 1  // Water = Electric
-  },
-  grass: {
-    water: 2,    // Grass > Water
-    fire: 0.5,   // Grass < Fire
-    grass: 1,    // Grass = Grass
-    electric: 1  // Grass = Electric
-  },
-  electric: {
-    water: 2,    // Electric > Water
-    fire: 1,     // Electric = Fire
-    grass: 0.5,    // Electric = Grass
-    electric: 1  // Electric = Electric
-  }
-} as const;
 
 type Pokemon = typeof POKEMON[number];
-type EffectivenessType = 0 | 0.5 | 1 | 2;
+type EffectivenessType = Effectiveness;
 
 const PokemonQuiz = () => {
   const [currentRound, setCurrentRound] = useState(1);
@@ -89,7 +63,7 @@ const PokemonQuiz = () => {
   const handleAnswer = (selectedEffectiveness: EffectivenessType) => {
     if (!attacker || !defender || showResult) return;
 
-    const correctEffectiveness = TYPE_EFFECTIVENESS[attacker.type as keyof typeof TYPE_EFFECTIVENESS][defender.type as keyof typeof TYPE_EFFECTIVENESS[typeof attacker.type]];
+    const correctEffectiveness = getTypeEffectiveness(attacker.type, defender.type);
     const isCorrect = selectedEffectiveness === correctEffectiveness;
     
     if (isCorrect) {
@@ -118,18 +92,18 @@ const PokemonQuiz = () => {
 
   const getEffectivenessColor = (effectiveness: EffectivenessType) => {
     switch (effectiveness) {
-      case 2: return 'super-effective';
-      case 0.5: return 'not-very-effective';
-      case 0: return 'no-effect';
+      case Effectiveness.SuperEffective: return 'super-effective';
+      case Effectiveness.NotVeryEffective: return 'not-very-effective';
+      case Effectiveness.NoEffect: return 'no-effect';
       default: return 'normal-effective';
     }
   };
 
   const getEffectivenessText = (effectiveness: EffectivenessType) => {
     switch (effectiveness) {
-      case 2: return 'Super Effective!';
-      case 0.5: return 'Not Very Effective...';
-      case 0: return 'It has no effect...';
+      case Effectiveness.SuperEffective: return 'Super Effective!';
+      case Effectiveness.NotVeryEffective: return 'Not Very Effective...';
+      case Effectiveness.NoEffect: return 'It has no effect...';
       default: return 'Normal effectiveness';
     }
   };
@@ -200,7 +174,7 @@ const PokemonQuiz = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <button
-                onClick={() => handleAnswer(2)}
+                onClick={() => handleAnswer(Effectiveness.SuperEffective)}
                 className="group relative h-20 text-lg font-bold transition-all duration-300 rounded-2xl shadow-button hover:shadow-button-pressed active:shadow-button-pressed bg-gradient-to-br from-background to-muted border-2 border-super-effective/30 hover:border-super-effective/60 hover:from-super-effective/10 hover:to-super-effective/5"
               >
                 <div className="flex flex-col items-center justify-center h-full text-super-effective group-hover:text-super-effective">
@@ -209,7 +183,7 @@ const PokemonQuiz = () => {
                 </div>
               </button>
               <button
-                onClick={() => handleAnswer(1)}
+                onClick={() => handleAnswer(Effectiveness.Normal)}
                 className="group relative h-20 text-lg font-bold transition-all duration-300 rounded-2xl shadow-button hover:shadow-button-pressed active:shadow-button-pressed bg-gradient-to-br from-background to-muted border-2 border-normal-effective/30 hover:border-normal-effective/60 hover:from-normal-effective/10 hover:to-normal-effective/5"
               >
                 <div className="flex flex-col items-center justify-center h-full text-normal-effective group-hover:text-normal-effective">
@@ -218,7 +192,7 @@ const PokemonQuiz = () => {
                 </div>
               </button>
               <button
-                onClick={() => handleAnswer(0.5)}
+                onClick={() => handleAnswer(Effectiveness.NotVeryEffective)}
                 className="group relative h-20 text-lg font-bold transition-all duration-300 rounded-2xl shadow-button hover:shadow-button-pressed active:shadow-button-pressed bg-gradient-to-br from-background to-muted border-2 border-not-very-effective/30 hover:border-not-very-effective/60 hover:from-not-very-effective/10 hover:to-not-very-effective/5"
               >
                 <div className="flex flex-col items-center justify-center h-full text-not-very-effective group-hover:text-not-very-effective">
@@ -227,7 +201,7 @@ const PokemonQuiz = () => {
                 </div>
               </button>
               <button
-                onClick={() => handleAnswer(0)}
+                onClick={() => handleAnswer(Effectiveness.NoEffect)}
                 className="group relative h-20 text-lg font-bold transition-all duration-300 rounded-2xl shadow-button hover:shadow-button-pressed active:shadow-button-pressed bg-gradient-to-br from-background to-muted border-2 border-no-effect/30 hover:border-no-effect/60 hover:from-no-effect/10 hover:to-no-effect/5"
               >
                 <div className="flex flex-col items-center justify-center h-full text-no-effect group-hover:text-no-effect">
