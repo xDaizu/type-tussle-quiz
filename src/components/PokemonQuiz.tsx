@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ChevronRight, RotateCcw, Trophy } from 'lucide-react';
+import { PokemonType } from '@/types/PokemonType';
 import PokemonCard from './PokemonCard';
 import BattleArena from './BattleArena';
 import ScoreDisplay from './ScoreDisplay';
@@ -13,25 +14,25 @@ export const POKEMON = [
   {
     id: 'charmander',
     name: 'Charmander',
-    type: 'fire',
+    type: PokemonType.Fire,
     sprite: '/src/assets/charmander.png'
   },
   {
     id: 'squirtle',
     name: 'Squirtle',
-    type: 'water',
+    type: PokemonType.Water,
     sprite: '/src/assets/squirtle.png'
   },
   {
     id: 'chikorita',
     name: 'Chikorita',
-    type: 'grass',
+    type: PokemonType.Grass,
     sprite: '/src/assets/chikorita.png'
   },
   {
     id: 'pikachu',
     name: 'Pikachu',
-    type: 'electric',
+    type: PokemonType.Electric,
     sprite: '/src/assets/pikachu.png'
   }
 ] as const;

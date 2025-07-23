@@ -2,6 +2,7 @@ import { Card } from '@/components/ui/card';
 
 // Import type icons
 import { SpriteProvider } from '@/lib/SpriteProvider';
+import { PokemonType } from '@/types/PokemonType';
 
 export const typeColorMap = {
   fire: 'fire',
@@ -14,7 +15,7 @@ interface PokemonCardProps {
   pokemon: {
     id: string;
     name: string;
-    type: string;
+    type: PokemonType;
     sprite: string;
   };
   isAttacker?: boolean;
@@ -24,16 +25,16 @@ interface PokemonCardProps {
 const PokemonCard = ({ pokemon, isAttacker = false, className = '' }: PokemonCardProps) => {
   const typeColor = typeColorMap[pokemon.type as keyof typeof typeColorMap];
   // Use SpriteProvider to get the correct sprite URL
-  const spriteUrl = SpriteProvider.getPokemonSprite(pokemon.id, isAttacker);
+  const spriteUrl = SpriteProvider.getPokemonModernSprite(pokemon.name, isAttacker);
   return (
     <Card className={`p-6 text-center shadow-card hover:shadow-pokemon-glow transition-all duration-500 border-0 ${isAttacker ? 'animate-slide-in' : ''} ${className}`}>
       <div className="relative mb-6">
-        <div className="bg-gradient-to-br from-background to-muted rounded-2xl p-2 shadow-card-inset">
+        <div className="bg-gradient-to-br from-background to-muted rounded-2xl p-2 shadow-card-inset overflow-hidden w-32 h-32 mx-auto flex items-end justify-center">
           <img
             src={spriteUrl}
             alt={pokemon.name}
-            className="w-28 h-28 mx-auto object-contain animate-bounce-in"
-            style={{ animationDelay: isAttacker ? '0.2s' : '0.4s' }}
+            className={`w-full h-full object-contain scale-140${isAttacker ? ' -scale-x-100' : ''}`}
+            style={{ objectPosition: 'center bottom', transform: `scale(1.4)${isAttacker ? ' scaleX(-1)' : ''}`, animationDelay: isAttacker ? '0.2s' : '0.4s' }}
           />
         </div>
         {isAttacker && (

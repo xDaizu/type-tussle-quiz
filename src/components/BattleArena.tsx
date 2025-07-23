@@ -1,4 +1,5 @@
 import { ChevronRight } from 'lucide-react';
+import { PokemonType } from '@/types/PokemonType';
 import PokemonCard from './PokemonCard';
 import { Card } from '@/components/ui/card';
 import { typeColorMap } from './PokemonCard';
@@ -8,13 +9,13 @@ interface BattleArenaProps {
   attacker: {
     id: string;
     name: string;
-    type: string;
+    type: PokemonType;
     sprite: string;
   };
   defender: {
     id: string;
     name: string;
-    type: string;
+    type: PokemonType;
     sprite: string;
   };
   showResult?: {
