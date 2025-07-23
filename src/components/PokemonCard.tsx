@@ -28,6 +28,8 @@ const PokemonCard = ({ pokemon, isAttacker = false, className = '' }: PokemonCar
   const typeColor = typeColorMap[pokemon.type as keyof typeof typeColorMap];
   // Use SpriteProvider to get the correct sprite URL
   const spriteUrl = SpriteProvider.getPokemonHomeSprite(pokemon.name, sex);
+  const isLeftFacing = SpriteProvider.isLeftFacing(pokemon.name);
+  const shouldFlip = isLeftFacing ? !isAttacker : isAttacker;
   return (
     <Card className={`p-6 text-center shadow-card hover:shadow-pokemon-glow transition-all duration-500 border-0 ${isAttacker ? 'animate-slide-in' : ''} ${className}`}>
       <div className="relative mb-6">
@@ -35,8 +37,8 @@ const PokemonCard = ({ pokemon, isAttacker = false, className = '' }: PokemonCar
           <img
             src={spriteUrl}
             alt={pokemon.name}
-            className={`absolute left-0 right-0 mx-auto object-contain${isAttacker ? ' -scale-x-100' : ''}}`}
-            style={{ width: '100%', bottom: 0, objectPosition: 'center bottom', transform: `scale(1.0) ${isAttacker ? ' scaleX(-1)' : ''}`, transformOrigin: 'center bottom', animationDelay: isAttacker ? '0.2s' : '0.4s', position: 'absolute' }}
+            className={`absolute left-0 right-0 mx-auto object-contain${shouldFlip ? ' -scale-x-100' : ''}`}
+            style={{ width: '100%', bottom: 0, objectPosition: 'center bottom', transform: `scale(1.0)${shouldFlip ? ' scaleX(-1)' : ''}`, transformOrigin: 'center bottom', animationDelay: isAttacker ? '0.2s' : '0.4s', position: 'absolute' }}
             onError={e => {
                 setSex('male');
                 e.currentTarget.onerror = null;

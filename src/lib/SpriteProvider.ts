@@ -86,6 +86,12 @@ const typeSpriteCDNMap = {
   },
 };
 
+// List of Pokémon whose sprites are left-facing
+const LEFT_FACING_POKEMON = [
+  'voltorb',
+  'tangela',
+  'rookidee',
+];
 
 
 export class SpriteProvider {
@@ -135,5 +141,12 @@ export class SpriteProvider {
     const entry = typeSpriteCDNMap[type as keyof typeof typeSpriteCDNMap];
     if (!entry) return '';
     return entry.symbol;
+  }
+
+  /**
+   * Returns true if the given Pokémon name is left-facing.
+   */
+  static isLeftFacing(pokemonName: string): boolean {
+    return LEFT_FACING_POKEMON.includes(pokemonName.toLowerCase());
   }
 } 
