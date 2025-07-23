@@ -23,39 +23,43 @@ interface BattleArenaProps {
 
 const BattleArena = ({ attacker, defender, showResult }: BattleArenaProps) => {
   return (
-    <Card className="p-8 shadow-card">
+    <Card className="p-8 shadow-card border-0">
       <div className="flex items-center justify-center gap-8 flex-wrap">
         {/* Attacker Pokemon */}
-        <div className="flex-1 min-w-[200px] max-w-[280px]">
-          <PokemonCard pokemon={attacker} isAttacker className="border-2 border-primary/20" />
+        <div className="flex-1 min-w-[220px] max-w-[300px]">
+          <PokemonCard pokemon={attacker} isAttacker />
         </div>
 
         {/* Battle Arrow */}
-        <div className="flex flex-col items-center gap-3 min-w-[120px]">
+        <div className="flex flex-col items-center gap-4 min-w-[140px]">
           <div className="text-lg font-bold text-muted-foreground uppercase tracking-wider">
             Attacks
           </div>
-          <div className={`flex items-center justify-center p-4 rounded-full transition-all duration-500 ${
+          <div className={`flex items-center justify-center p-6 rounded-2xl transition-all duration-500 shadow-button ${
             showResult 
               ? showResult.correct 
-                ? 'bg-super-effective shadow-lg animate-pulse-glow' 
-                : 'bg-not-very-effective shadow-lg'
-              : 'bg-accent hover:bg-accent/80'
+                ? 'bg-super-effective shadow-button-pressed animate-pulse-glow' 
+                : 'bg-not-very-effective shadow-button-pressed'
+              : 'bg-gradient-to-br from-accent to-primary hover:from-primary hover:to-accent'
           }`}>
-            <ChevronRight className="w-8 h-8 text-white" />
+            <ChevronRight className="w-10 h-10 text-white drop-shadow-sm" />
           </div>
-          <Zap className="w-6 h-6 text-accent animate-pulse" />
+          <div className="flex items-center gap-2">
+            <Zap className="w-6 h-6 text-accent animate-pulse" />
+            <div className="w-2 h-2 bg-accent rounded-full animate-ping"></div>
+            <div className="w-2 h-2 bg-accent rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
+          </div>
         </div>
 
         {/* Defender Pokemon */}
-        <div className="flex-1 min-w-[200px] max-w-[280px]">
-          <PokemonCard pokemon={defender} className="border-2 border-muted/20" />
+        <div className="flex-1 min-w-[220px] max-w-[300px]">
+          <PokemonCard pokemon={defender} />
         </div>
       </div>
 
       {/* Battle Description */}
-      <div className="text-center mt-6 p-4 bg-muted/30 rounded-lg">
-        <p className="text-lg">
+      <div className="text-center mt-8 p-6 bg-gradient-to-r from-muted/40 to-muted/60 rounded-2xl shadow-card-inset">
+        <p className="text-lg leading-relaxed">
           <span className="font-bold text-primary">{attacker.name}</span>
           <span className="mx-2 text-muted-foreground">uses a</span>
           <span className="font-bold capitalize bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">

@@ -194,47 +194,47 @@ const PokemonQuiz = () => {
         )}
 
         {!showResult && (
-          <Card className="mt-6 p-6 shadow-card">
-            <h2 className="text-xl font-semibold mb-4 text-center">
+          <Card className="mt-8 p-8 shadow-card border-0">
+            <h2 className="text-2xl font-bold mb-8 text-center text-foreground">
               How effective is this attack?
             </h2>
-            <div className="grid grid-cols-2 gap-4">
-              <Button
-                variant="outline"
-                size="lg"
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <button
                 onClick={() => handleAnswer(2)}
-                className="h-16 text-lg font-semibold border-super-effective hover:bg-super-effective hover:text-white transition-all duration-200"
+                className="group relative h-20 text-lg font-bold transition-all duration-300 rounded-2xl shadow-button hover:shadow-button-pressed active:shadow-button-pressed bg-gradient-to-br from-background to-muted border-2 border-super-effective/30 hover:border-super-effective/60 hover:from-super-effective/10 hover:to-super-effective/5"
               >
-                Super Effective
-                <div className="text-sm opacity-75">(×2)</div>
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
+                <div className="flex flex-col items-center justify-center h-full text-super-effective group-hover:text-super-effective">
+                  <span className="text-lg font-bold">Super Effective</span>
+                  <span className="text-sm opacity-75">(×2)</span>
+                </div>
+              </button>
+              <button
                 onClick={() => handleAnswer(1)}
-                className="h-16 text-lg font-semibold border-normal-effective hover:bg-normal-effective hover:text-white transition-all duration-200"
+                className="group relative h-20 text-lg font-bold transition-all duration-300 rounded-2xl shadow-button hover:shadow-button-pressed active:shadow-button-pressed bg-gradient-to-br from-background to-muted border-2 border-normal-effective/30 hover:border-normal-effective/60 hover:from-normal-effective/10 hover:to-normal-effective/5"
               >
-                Normal
-                <div className="text-sm opacity-75">(×1)</div>
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
+                <div className="flex flex-col items-center justify-center h-full text-normal-effective group-hover:text-normal-effective">
+                  <span className="text-lg font-bold">Normal</span>
+                  <span className="text-sm opacity-75">(×1)</span>
+                </div>
+              </button>
+              <button
                 onClick={() => handleAnswer(0.5)}
-                className="h-16 text-lg font-semibold border-not-very-effective hover:bg-not-very-effective hover:text-white transition-all duration-200"
+                className="group relative h-20 text-lg font-bold transition-all duration-300 rounded-2xl shadow-button hover:shadow-button-pressed active:shadow-button-pressed bg-gradient-to-br from-background to-muted border-2 border-not-very-effective/30 hover:border-not-very-effective/60 hover:from-not-very-effective/10 hover:to-not-very-effective/5"
               >
-                Not Very Effective
-                <div className="text-sm opacity-75">(×0.5)</div>
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
+                <div className="flex flex-col items-center justify-center h-full text-not-very-effective group-hover:text-not-very-effective">
+                  <span className="text-lg font-bold">Not Very Effective</span>
+                  <span className="text-sm opacity-75">(×0.5)</span>
+                </div>
+              </button>
+              <button
                 onClick={() => handleAnswer(0)}
-                className="h-16 text-lg font-semibold border-no-effect hover:bg-no-effect hover:text-white transition-all duration-200"
+                className="group relative h-20 text-lg font-bold transition-all duration-300 rounded-2xl shadow-button hover:shadow-button-pressed active:shadow-button-pressed bg-gradient-to-br from-background to-muted border-2 border-no-effect/30 hover:border-no-effect/60 hover:from-no-effect/10 hover:to-no-effect/5"
               >
-                No Effect
-                <div className="text-sm opacity-75">(×0)</div>
-              </Button>
+                <div className="flex flex-col items-center justify-center h-full text-no-effect group-hover:text-no-effect">
+                  <span className="text-lg font-bold">No Effect</span>
+                  <span className="text-sm opacity-75">(×0)</span>
+                </div>
+              </button>
             </div>
           </Card>
         )}

@@ -83,7 +83,10 @@ export default {
 			},
 			boxShadow: {
 				'card': 'var(--card-shadow)',
+				'card-inset': 'var(--card-shadow-inset)',
 				'pokemon-glow': 'var(--pokemon-glow)',
+				'button': 'var(--button-shadow)',
+				'button-pressed': 'var(--button-shadow-pressed)',
 			},
 			keyframes: {
 				'accordion-down': {

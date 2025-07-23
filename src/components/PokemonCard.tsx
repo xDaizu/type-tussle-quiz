@@ -49,34 +49,33 @@ const PokemonCard = ({ pokemon, isAttacker = false, className = '' }: PokemonCar
   const typeColor = typeColorMap[pokemon.type as keyof typeof typeColorMap];
   
   return (
-    <Card className={`p-6 text-center shadow-card hover:shadow-pokemon-glow transition-all duration-300 ${isAttacker ? 'animate-slide-in' : ''} ${className}`}>
-      <div className="relative">
-        <img
-          src={spriteMap[pokemon.id as keyof typeof spriteMap]}
-          alt={pokemon.name}
-          className="w-24 h-24 mx-auto mb-4 object-contain animate-bounce-in"
-          style={{ animationDelay: isAttacker ? '0.2s' : '0.4s' }}
-        />
+    <Card className={`p-6 text-center shadow-card hover:shadow-pokemon-glow transition-all duration-500 border-0 ${isAttacker ? 'animate-slide-in' : ''} ${className}`}>
+      <div className="relative mb-6">
+        <div className="bg-gradient-to-br from-background to-muted rounded-2xl p-4 shadow-card-inset">
+          <img
+            src={spriteMap[pokemon.id as keyof typeof spriteMap]}
+            alt={pokemon.name}
+            className="w-20 h-20 mx-auto object-contain animate-bounce-in"
+            style={{ animationDelay: isAttacker ? '0.2s' : '0.4s' }}
+          />
+        </div>
         {isAttacker && (
-          <div className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full font-semibold">
+          <div className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs px-3 py-1 rounded-full font-bold shadow-button">
             ATK
           </div>
         )}
       </div>
       
-      <h3 className="text-lg font-bold mb-2">{pokemon.name}</h3>
+      <h3 className="text-xl font-bold mb-4 text-foreground">{pokemon.name}</h3>
       
-      <div className="flex items-center justify-center gap-2">
-        <img
-          src={typeIconMap[pokemon.type as keyof typeof typeIconMap]}
-          alt={`${pokemon.type} type`}
-          className="w-6 h-6 object-contain"
-        />
-        <Badge 
-          className={`bg-${typeColor} text-white font-semibold capitalize`}
-        >
-          {pokemon.type}
-        </Badge>
+      <div className="flex flex-col items-center gap-3">
+        <div className="bg-gradient-to-r from-background to-muted p-2 rounded-xl shadow-card-inset">
+          <img
+            src={typeIconMap[pokemon.type as keyof typeof typeIconMap]}
+            alt={`${pokemon.type} type`}
+            className="h-8 w-auto object-contain"
+          />
+        </div>
       </div>
     </Card>
   );
