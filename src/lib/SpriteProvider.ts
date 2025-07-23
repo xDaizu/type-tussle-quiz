@@ -91,6 +91,8 @@ const LEFT_FACING_POKEMON = [
   'voltorb',
   'tangela',
   'rookidee',
+  'dratini',
+  'koffing',
 ];
 
 

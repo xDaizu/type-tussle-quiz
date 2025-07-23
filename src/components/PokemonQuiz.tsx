@@ -14,7 +14,7 @@ import { PokemonProvider } from '@/lib/PokemonProvider';
 type Pokemon = ReturnType<typeof PokemonProvider.getAll>[number];
 type EffectivenessType = Effectiveness;
 
-const PokemonQuiz = () => {
+const PokemonQuiz = ({ totalRounds = 5 }: { totalRounds?: number }) => {
   const [currentRound, setCurrentRound] = useState(1);
   const [score, setScore] = useState(0);
   const [attacker, setAttacker] = useState<Pokemon | null>(null);
@@ -49,7 +49,7 @@ const PokemonQuiz = () => {
     setShowResult({ correct: isCorrect, effectiveness: correctEffectiveness });
 
     setTimeout(() => {
-      if (currentRound >= 3) {
+      if (currentRound >= totalRounds) {
         setGameOver(true);
       } else {
         setCurrentRound(currentRound + 1);
@@ -91,20 +91,20 @@ const PokemonQuiz = () => {
           <Trophy className="w-16 h-16 mx-auto mb-4 text-accent" />
           <h1 className="text-3xl font-bold mb-4">Quiz Complete!</h1>
           <p className="text-xl mb-6">
-            Your Score: <span className="font-bold text-primary">{score}/3</span>
+            Your Score: <span className="font-bold text-primary">{score}/{totalRounds}</span>
           </p>
           <div className="mb-6">
-            {score === 3 && (
+            {score === totalRounds && (
               <Badge className="bg-super-effective text-white text-lg py-2 px-4">
                 Perfect Score! 🎉
               </Badge>
             )}
-            {score === 2 && (
+            {score === totalRounds - 1 && (
               <Badge className="bg-accent text-accent-foreground text-lg py-2 px-4">
                 Great Job! 👏
               </Badge>
             )}
-            {score <= 1 && (
+            {score <= totalRounds - 2 && (
               <Badge className="bg-not-very-effective text-white text-lg py-2 px-4">
                 Keep Practicing! 💪
               </Badge>
@@ -122,7 +122,7 @@ const PokemonQuiz = () => {
   return (
     <div className="min-h-screen bg-arena-gradient p-4">
       <div className="max-w-4xl mx-auto">
-        <ScoreDisplay round={currentRound} score={score} totalRounds={3} />
+        <ScoreDisplay round={currentRound} score={score} totalRounds={totalRounds} />
         
         {attacker && defender && (
           <BattleArena 
