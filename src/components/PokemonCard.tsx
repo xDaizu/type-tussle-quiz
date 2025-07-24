@@ -31,8 +31,10 @@ const PokemonCard = ({ pokemon, isAttacker = false, className = '' }: PokemonCar
   const isLeftFacing = SpriteProvider.isLeftFacing(pokemon.name);
   const shouldFlip = isLeftFacing ? !isAttacker : isAttacker;
   return (
-    <Card className={`p-6 text-center shadow-card hover:shadow-pokemon-glow transition-all duration-500 border-0 ${isAttacker ? 'animate-slide-in' : 'animate-shake'} ${className}`}>
-      <div className="relative mb-6">
+    <Card className={`p-2 text-center shadow-card hover:shadow-pokemon-glow transition-all duration-500 border-0 ${isAttacker ? 'animate-slide-in' : 'animate-shake'} ${className}`}>
+      <h3 className="text-xl font-bold text-foreground">{pokemon.name}</h3>
+      
+      <div className="relative mb-2">
         <div className="bg-gradient-to-br from-background to-muted rounded-2xl p-2 shadow-card-inset overflow-hidden w-32 h-32 mx-auto relative">
           <img
             src={spriteUrl}
@@ -53,7 +55,6 @@ const PokemonCard = ({ pokemon, isAttacker = false, className = '' }: PokemonCar
         )}
       </div>
       
-      <h3 className="text-xl font-bold mb-4 text-foreground">{pokemon.name}</h3>
       
       <div className="flex flex-col items-center gap-3">
         <div className="bg-gradient-to-r from-background to-muted p-2 rounded-xl shadow-card-inset">

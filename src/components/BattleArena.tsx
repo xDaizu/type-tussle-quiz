@@ -28,9 +28,9 @@ const BattleArena = ({ attacker, defender, showResult }: BattleArenaProps) => {
   const arrowColor = typeColorMap[attacker.type as keyof typeof typeColorMap] || 'primary';
   const typeSymbol = SpriteProvider.getTypeSpriteSymbol(attacker.type);
   return (
-    <Card className="p-8 shadow-card border-0">
+    <Card className="p-2 shadow-card border-0">
        {/* Battle Description */}
-       <div className="text-center mt-8 p-6 bg-gradient-to-r from-muted/40 to-muted/60 rounded-2xl shadow-card-inset">
+       <div className="text-center p-2 bg-gradient-to-r from-muted/40 to-muted/60 rounded-2xl shadow-card-inset">
         <p className="text-lg leading-relaxed">
           <span className="font-bold text-primary">{attacker.name}</span>
           <span className="mx-2 text-muted-foreground">uses a</span>
