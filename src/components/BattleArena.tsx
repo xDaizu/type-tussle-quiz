@@ -51,7 +51,7 @@ const BattleArena = ({ attacker, defender, showResult }: BattleArenaProps) => {
           <div className={`w-2 h-2 bg-${attacker.type} rounded-full animate-ping`} style={{ animationDelay: '0.15s' }}></div>
           <div className={`w-3 h-3 bg-${attacker.type} rounded-full animate-ping`} style={{ animationDelay: '0.2s' }}></div>
         </div>
-        <div className="flex flex-row items-center justify-center gap-2 sm:gap-8 flex-nowrap mt-12">
+        <div className="flex flex-row items-center justify-center gap-2 sm:gap-8 flex-nowrap mt-2">
         {/* Attacker Pokemon */}
         <div className="flex-1 min-w-0 max-w-[300px] w-1/2">
           <PokemonCard key={attacker.id + '-' + attacker.name} pokemon={attacker} isAttacker />

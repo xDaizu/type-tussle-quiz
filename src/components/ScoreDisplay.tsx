@@ -87,7 +87,7 @@ const ScoreDisplay = ({ round, score, totalRounds }: ScoreDisplayProps) => {
           <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             Pokemon Type Quiz
           </h1>
-          <p className="text-muted-foreground mt-1">
+          <p className="text-muted-foreground mt-1 hidden md:block">
             Test your knowledge of type effectiveness!
           </p>
         </div>
@@ -101,7 +101,7 @@ const ScoreDisplay = ({ round, score, totalRounds }: ScoreDisplayProps) => {
           </div>
 
           <div className="text-center">
-            <div className="text-sm text-muted-foreground mb-1">Score</div>
+            <div className="text-sm text-muted-foreground mb-1 hidden md:block">Score</div>
             <Badge variant="secondary" className="text-xl font-bold px-4 py-2">
               {score}/{round}
             </Badge>
