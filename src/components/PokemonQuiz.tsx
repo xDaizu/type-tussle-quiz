@@ -2,9 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ChevronRight, RotateCcw, Trophy } from 'lucide-react';
-import { PokemonType } from '@/types/PokemonType';
-import PokemonCard from './PokemonCard';
+
 import BattleArena from './BattleArena';
 import ScoreDisplay from './ScoreDisplay';
 import { getTypeEffectiveness, Effectiveness, getResultPhrase } from '@/lib/utils';
