@@ -43,7 +43,7 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
     const isCorrect = selectedEffectiveness === correctEffectiveness;
     
     if (isCorrect) {
-      setScore(score + 1);
+      setScore(prev => prev + 1);
     }
 
     setShowResult({ correct: isCorrect, effectiveness: correctEffectiveness });
