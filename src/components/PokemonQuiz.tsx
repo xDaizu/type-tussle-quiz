@@ -145,7 +145,7 @@ const PokemonQuiz = ({ totalRounds = 5 }: { totalRounds?: number }) => {
 
         {!showResult && (
           <Card className="mt-8 p-8 shadow-card border-0">
-            <h2 className="text-2xl font-bold mb-8 text-center text-foreground">
+            <h2 className="text-l font-bold mb-2 text-center text-foreground">
               How effective is this attack?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

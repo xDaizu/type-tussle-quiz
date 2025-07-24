@@ -12,10 +12,10 @@ const ScoreDisplay = ({ round, score, totalRounds }: ScoreDisplayProps) => {
   const progressValue = ((round - 1) / totalRounds) * 100;
 
   return (
-    <Card className="p-6 mb-6 shadow-card">
+    <Card className="p-2 mb-2 shadow-card">
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="text-center md:text-left">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             Pokemon Type Quiz
           </h1>
           <p className="text-muted-foreground mt-1">
@@ -25,7 +25,7 @@ const ScoreDisplay = ({ round, score, totalRounds }: ScoreDisplayProps) => {
 
         <div className="flex items-center gap-6">
           <div className="text-center">
-            <div className="text-2xl font-bold text-primary">
+            <div className="text-xl font-bold text-primary">
               Round {round}/{totalRounds}
             </div>
             <Progress value={progressValue} className="w-24 mt-2" />
