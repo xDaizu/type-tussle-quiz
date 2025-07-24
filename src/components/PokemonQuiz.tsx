@@ -185,43 +185,46 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
           />
         )}
 
-        {showResult && (
-          <Card className="mt-6 p-6 text-center shadow-card animate-bounce-in">
-            <div className={`text-2xl font-bold mb-2 text-${getEffectivenessColor(showResult.effectiveness)}`}>
-              {showResult.correct ? '✅ Correct!' : '❌ Wrong!'}
-            </div>
-            <p className="text-lg">
-              {getEffectivenessText(showResult.effectiveness)} (×{showResult.effectiveness})
-            </p>
-            <p className="text-m">
-              {attacker ? FeedbackProvider.getFeedback(attacker.type, showResult.correct ? 'pass' : 'fail') : ''}
-            </p>
-          </Card>
-        )}
+        {/* Robust wrapper to prevent layout shift and scrollbar flicker */}
+        <div className="min-h-[180px] overflow-hidden transition-all duration-300">
+          {showResult && (
+            <Card className="mt-6 p-6 text-center shadow-card animate-bounce-in">
+              <div className={`text-2xl font-bold mb-2 text-${getEffectivenessColor(showResult.effectiveness)}`}>
+                {showResult.correct ? '✅ Correct!' : '❌ Wrong!'}
+              </div>
+              <p className="text-lg">
+                {getEffectivenessText(showResult.effectiveness)} (×{showResult.effectiveness})
+              </p>
+              <p className="text-m">
+                {attacker ? FeedbackProvider.getFeedback(attacker.type, showResult.correct ? 'pass' : 'fail') : ''}
+              </p>
+            </Card>
+          )}
 
-        {!showResult && (
-          <Card className="mt-2 p-2 shadow-card border-0">
-            <h2 className="text-l font-bold mb-2 text-center text-foreground">
-              How effective is this attack?
-            </h2>
-            <div className="grid grid-cols-2 gap-2">
-              {quizAnswerOptions.map(option => (
-                <QuizAnswerButton
-                  key={option.effectiveness}
-                  label={option.label}
-                  multiplier={option.multiplier}
-                  onClick={() => handleAnswer(option.effectiveness)}
-                  colorClass={option.colorClass}
-                  style={option.style}
-                  textColorClass={option.textColorClass}
-                  ringClass={option.ringClass}
-                  onMouseOverBoxShadow={option.onMouseOverBoxShadow}
-                  onMouseOutBoxShadow={option.onMouseOutBoxShadow}
-                />
-              ))}
-            </div>
-          </Card>
-        )}
+          {!showResult && (
+            <Card className="mt-2 p-2 shadow-card border-0">
+              <h2 className="text-l font-bold mb-2 text-center text-foreground">
+                How effective is this attack?
+              </h2>
+              <div className="grid grid-cols-2 gap-2">
+                {quizAnswerOptions.map(option => (
+                  <QuizAnswerButton
+                    key={option.effectiveness}
+                    label={option.label}
+                    multiplier={option.multiplier}
+                    onClick={() => handleAnswer(option.effectiveness)}
+                    colorClass={option.colorClass}
+                    style={option.style}
+                    textColorClass={option.textColorClass}
+                    ringClass={option.ringClass}
+                    onMouseOverBoxShadow={option.onMouseOverBoxShadow}
+                    onMouseOutBoxShadow={option.onMouseOutBoxShadow}
+                  />
+                ))}
+              </div>
+            </Card>
+          )}
+        </div>
       </div>
     </div>
   );
