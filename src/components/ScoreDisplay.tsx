@@ -8,9 +8,11 @@ interface ScoreDisplayProps {
   round: number;
   score: number;
   totalRounds: number;
+  gameMode: 'normal' | 'eevee';
+  onGameModeChange: (mode: 'normal' | 'eevee') => void;
 }
 
-const ScoreDisplay = ({ round, score, totalRounds }: ScoreDisplayProps) => {
+const ScoreDisplay = ({ round, score, totalRounds, gameMode, onGameModeChange }: ScoreDisplayProps) => {
   const progressValue = ((round - 1) / totalRounds) * 100;
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownPos, setDropdownPos] = useState<{left: number, top: number} | null>(null);
@@ -63,17 +65,20 @@ const ScoreDisplay = ({ round, score, totalRounds }: ScoreDisplayProps) => {
           >
             <ul className="py-2">
               <li>
-                <button className="w-full text-left px-4 py-2 hover:bg-muted font-semibold text-primary" disabled>
+                <button
+                  className={`w-full text-left px-4 py-2 font-semibold ${gameMode === 'normal' ? 'text-primary hover:bg-muted' : 'text-foreground'}`}
+                  onClick={() => { onGameModeChange('normal'); setMenuOpen(false); }}
+                  disabled={gameMode === 'normal'}
+                >
                   Single type <span className="ml-2 text-xs text-accent">(default)</span>
                 </button>
               </li>
               <li>
-                <button className="w-full text-left px-4 py-2 text-muted-foreground cursor-not-allowed opacity-60" disabled>
-                  Dual types
-                </button>
-              </li>
-              <li>
-                <button className="w-full text-left px-4 py-2 text-muted-foreground cursor-not-allowed opacity-60" disabled>
+                <button
+                  className={`w-full text-left px-4 py-2 ${gameMode === 'eevee' ? 'text-primary hover:bg-muted' : 'text-foreground'}`}
+                  onClick={() => { onGameModeChange('eevee'); setMenuOpen(false); }}
+                  disabled={gameMode === 'eevee'}
+                >
                   Eevee mode
                 </button>
               </li>

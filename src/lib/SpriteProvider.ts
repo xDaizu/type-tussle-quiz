@@ -15,6 +15,9 @@ const LEFT_FACING_POKEMON = [
   'rookidee',
   'dratini',
   'koffing',
+  'vaporeon',
+  'umbreon',
+  'glaceon',
 ];
 
 export class SpriteProvider {
