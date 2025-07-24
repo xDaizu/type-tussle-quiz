@@ -1,6 +1,7 @@
 // SpriteProvider.ts
 
 import { PokemonType } from '@/types/PokemonType';
+import { AssetHelper } from './AssetHelper';
 
 // Helper to capitalize the first letter
 function capitalize(str: string): string {
@@ -25,12 +26,12 @@ export class SpriteProvider {
 
   static getTypeSpriteWithWord(type: PokemonType): string {
     // e.g., sprites/types/wordy/FireIC_SV.png
-    return `sprites/types/wordy/${capitalize(type)}IC_SV.png`;
+    return AssetHelper.getAssetPath(`sprites/types/wordy/${capitalize(type)}IC_SV.png`);
   }
 
   static getTypeSpriteSymbol(type: PokemonType): string {
     // e.g., sprites/types/symbols/Fire_icon_Sleep.png
-    return `sprites/types/symbols/${capitalize(type)}_icon_Sleep.png`;
+    return AssetHelper.getAssetPath(`sprites/types/symbols/${capitalize(type)}_icon_Sleep.png`);
   }
 
   /**
