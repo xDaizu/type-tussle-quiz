@@ -34,7 +34,7 @@ const ScoreDisplay = ({ round, score, totalRounds }: ScoreDisplayProps) => {
           <div className="text-center">
             <div className="text-sm text-muted-foreground mb-1">Score</div>
             <Badge variant="secondary" className="text-xl font-bold px-4 py-2">
-              {score}/{round - 1 + (round > totalRounds ? 1 : 0)}
+              {score}/{round}
             </Badge>
           </div>
         </div>
