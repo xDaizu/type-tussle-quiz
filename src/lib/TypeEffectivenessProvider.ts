@@ -1,3 +1,4 @@
+import { PokemonType } from '@/types/PokemonType';
 export enum Effectiveness {
   NoEffect = 0,
   NotVeryEffective = 0.5,
@@ -10,13 +11,12 @@ import typeStrength from './type.strength.json';
 /**
  * Returns the effectiveness multiplier for an attacker's type against a defender's type.
  * Only returns Effectiveness enum values. Defaults to Effectiveness.Normal for any other value.
- * @param attacker - The attacking type (e.g., 'fire')
- * @param defender - The defending type (e.g., 'water')
+ * @param attacker - The attacking type (PokemonType)
+ * @param defender - The defending type (PokemonType)
  * @returns The effectiveness multiplier as an Effectiveness enum value
  */
-export function getTypeEffectiveness(attacker: string, defender: string): Effectiveness {
+export function getTypeEffectiveness(attacker: PokemonType, defender: PokemonType): Effectiveness {
   const attackerData = (typeStrength as Record<string, Record<string, number>>)[attacker];
-  if (!attackerData) return Effectiveness.Normal;
   const effectiveness = attackerData[defender];
   switch (effectiveness) {
     case 0: return Effectiveness.NoEffect;

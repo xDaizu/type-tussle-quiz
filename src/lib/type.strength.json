@@ -281,7 +281,7 @@
   },
   "psychic": {
     "bug": 1.0,
-    "dark": 1.0,
+    "dark": 0.0,
     "dragon": 1.0,
     "electric": 1.0,
     "fairy": 1.0,

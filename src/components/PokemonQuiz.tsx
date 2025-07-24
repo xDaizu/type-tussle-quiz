@@ -7,6 +7,7 @@ import { Trophy, RotateCcw } from 'lucide-react';
 import BattleArena from './BattleArena';
 import ScoreDisplay from './ScoreDisplay';
 import { getTypeEffectiveness, Effectiveness, getResultPhrase } from '@/lib/utils';
+import { PokemonType } from '@/types/PokemonType';
 import { PokemonProvider } from '@/lib/PokemonProvider';
 
 
@@ -38,7 +39,7 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
   const handleAnswer = (selectedEffectiveness: EffectivenessType) => {
     if (!attacker || !defender || showResult) return;
 
-    const correctEffectiveness = getTypeEffectiveness(attacker.type, defender.type);
+    const correctEffectiveness = getTypeEffectiveness(attacker.type as PokemonType, defender.type as PokemonType);
     const isCorrect = selectedEffectiveness === correctEffectiveness;
     
     if (isCorrect) {
