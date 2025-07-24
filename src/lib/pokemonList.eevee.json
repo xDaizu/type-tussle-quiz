@@ -1,0 +1,11 @@
+[
+  { "id": 133, "name": "Eevee", "type": "Normal" },
+  { "id": 134, "name": "Vaporeon", "type": "Water" },
+  { "id": 135, "name": "Jolteon", "type": "Electric" },
+  { "id": 136, "name": "Flareon", "type": "Fire" },
+  { "id": 196, "name": "Espeon", "type": "Psychic" },
+  { "id": 197, "name": "Umbreon", "type": "Dark" },
+  { "id": 470, "name": "Leafeon", "type": "Grass" },
+  { "id": 471, "name": "Glaceon", "type": "Ice" },
+  { "id": 700, "name": "Sylveon", "type": "Fairy" }
+] 

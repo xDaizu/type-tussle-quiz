@@ -24,6 +24,7 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
   const [defender, setDefender] = useState<Pokemon | null>(null);
   const [gameOver, setGameOver] = useState(false);
   const [showResult, setShowResult] = useState<{correct: boolean, effectiveness: EffectivenessType} | null>(null);
+  const [gameMode, setGameMode] = useState<'normal' | 'eevee'>('normal');
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const skipEnabled = useRef(false);
 
@@ -44,7 +45,9 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
     while (!randomAttacker) {
       try {
         attackerType = getRandomType();
-        randomAttacker = PokemonProvider.getRandomByType(attackerType);
+        randomAttacker = gameMode === 'eevee'
+          ? PokemonProvider.getEevolutionByType(attackerType)
+          : PokemonProvider.getRandomByType(attackerType);
       } catch (e) {
         // Try again
       }
@@ -54,7 +57,9 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
     while (!randomDefender) {
       try {
         defenderType = getRandomType();
-        randomDefender = PokemonProvider.getRandomByType(defenderType);
+        randomDefender = gameMode === 'eevee'
+          ? PokemonProvider.getEevolutionByType(defenderType)
+          : PokemonProvider.getRandomByType(defenderType);
       } catch (e) {
         // Try again
       }
@@ -68,6 +73,12 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
   useEffect(() => {
     generateBattle();
   }, []);
+
+  // Reset game when gameMode changes
+  useEffect(() => {
+    resetGame();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gameMode]);
 
   useEffect(() => {
     if (!showResult) return;
@@ -175,7 +186,7 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
   return (
     <div className="min-h-screen bg-arena-gradient p-4">
       <div className="max-w-4xl mx-auto">
-        <ScoreDisplay round={currentRound} score={score} totalRounds={totalRounds} />
+        <ScoreDisplay round={currentRound} score={score} totalRounds={totalRounds} gameMode={gameMode} onGameModeChange={setGameMode} />
         
         {attacker && defender && (
           <BattleArena 
