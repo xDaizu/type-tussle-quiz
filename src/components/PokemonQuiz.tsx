@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -23,6 +23,8 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
   const [defender, setDefender] = useState<Pokemon | null>(null);
   const [gameOver, setGameOver] = useState(false);
   const [showResult, setShowResult] = useState<{correct: boolean, effectiveness: EffectivenessType} | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const skipEnabled = useRef(false);
 
   const pokemonList = PokemonProvider.getAll();
 
@@ -66,6 +68,45 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
     generateBattle();
   }, []);
 
+  useEffect(() => {
+    if (!showResult) return;
+
+    skipEnabled.current = false;
+    const enableSkip = setTimeout(() => { skipEnabled.current = true; }, 50);
+
+    const advance = () => {
+      if (!skipEnabled.current) return;
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+      if (currentRound >= totalRounds) {
+        setGameOver(true);
+      } else {
+        setCurrentRound(currentRound + 1);
+        generateBattle();
+      }
+      setShowResult(null); // Prevent double advance
+    };
+
+    // Set up timeout
+    timeoutRef.current = setTimeout(advance, showResult.correct ? 1000 : 2000);
+
+    // Set up click-to-skip
+    const handleClick = () => advance();
+    window.addEventListener('click', handleClick);
+
+    // Cleanup
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+      window.removeEventListener('click', handleClick);
+      clearTimeout(enableSkip);
+    };
+  }, [showResult, currentRound, totalRounds]);
+
   const handleAnswer = (selectedEffectiveness: EffectivenessType) => {
     if (!attacker || !defender || showResult) return;
 
@@ -77,15 +118,7 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
     }
 
     setShowResult({ correct: isCorrect, effectiveness: correctEffectiveness });
-
-    setTimeout(() => {
-      if (currentRound >= totalRounds) {
-        setGameOver(true);
-      } else {
-        setCurrentRound(currentRound + 1);
-        generateBattle();
-      }
-    }, 2000);
+    // Timeout and click-to-skip handled in useEffect
   };
 
   const resetGame = () => {
