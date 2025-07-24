@@ -204,8 +204,7 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
                     const correctOption = quizAnswerOptions.find(option => option.effectiveness === showResult.effectiveness);
                     return (
                       <span
-                        className={`font-bold inline-block px-3 py-1 rounded drop-shadow ${correctOption?.colorClass || ''} ${correctOption?.textColorClass || ''} ${correctOption?.ringClass || ''}`}
-                        style={correctOption?.style}
+                        className={`font-bold inline-block px-3 py-1 rounded drop-shadow ${correctOption?.gradientClass || ''} ${correctOption?.ringClass || ''}`}
                       >
                         {getEffectivenessText(showResult.effectiveness)} (×{showResult.effectiveness})
                       </span>
@@ -220,8 +219,7 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
                           {selectedEffectiveness !== null ? getEffectivenessText(selectedEffectiveness) + ` (×${selectedEffectiveness})` : ''}
                         </span>
                         <span
-                          className={`font-bold inline-block px-3 py-1 rounded drop-shadow ${correctOption?.colorClass || ''} ${correctOption?.textColorClass || ''} ${correctOption?.ringClass || ''}`}
-                          style={correctOption?.style}
+                          className={`font-bold inline-block px-3 py-1 rounded drop-shadow ${correctOption?.gradientClass || ''} ${correctOption?.ringClass || ''}`}
                         >
                           {getEffectivenessText(showResult.effectiveness)} (×{showResult.effectiveness})
                         </span>
@@ -248,8 +246,7 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
                     label={option.label}
                     multiplier={option.multiplier}
                     onClick={() => handleAnswer(option.effectiveness)}
-                    colorClass={option.colorClass}
-                    style={option.style}
+                    gradientClass={option.gradientClass}
                     textColorClass={option.textColorClass}
                     ringClass={option.ringClass}
                     onMouseOverBoxShadow={option.onMouseOverBoxShadow}
