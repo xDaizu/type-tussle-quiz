@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="refresh" content="0; url=/type-tussle-quiz/" />
+  </head>
+  <body>
+    <p>Redirecting...</p>
+    <script>
+      // For client-side routers that use the URL after the base path
+      var path = location.pathname.replace('/type-tussle-quiz', '');
+      var search = location.search || '';
+      var hash = location.hash || '';
+      location.replace('/type-tussle-quiz/' + (path ? path.replace(/^\//, '') : '') + search + hash);
+    </script>
+  </body>
+</html> 
