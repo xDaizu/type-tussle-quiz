@@ -11,6 +11,7 @@ import { PokemonType } from '@/types/PokemonType';
 import { PokemonProvider } from '@/lib/PokemonProvider';
 import { quizAnswerOptions } from '@/lib/quizAnswerOptions';
 import QuizAnswerButton from './QuizAnswerButton';
+import { FeedbackProvider } from '@/lib/FeedbackProvider';
 
 
 type Pokemon = ReturnType<typeof PokemonProvider.getAll>[number];
@@ -190,7 +191,7 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
               {showResult.correct ? '✅ Correct!' : '❌ Wrong!'}
             </div>
             <p className="text-lg">
-              {getEffectivenessText(showResult.effectiveness)} (×{showResult.effectiveness})
+              {attacker ? FeedbackProvider.getFeedback(attacker.type, showResult.correct ? 'pass' : 'fail') : ''}
             </p>
           </Card>
         )}

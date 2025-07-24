@@ -1,0 +1,74 @@
+{
+  "normal": {
+    "pass": "¡Lo NORMAL es que aciertes, y así fue!",
+    "fail": "ES NORMAL fallar, pero no te desanimes, sigue intentándolo."
+  },
+  "fire": {
+    "pass": "¡Estás \"on FIRE\"!",
+    "fail": "Quien juega con FUEGO, se quema."
+  },
+  "water": {
+    "pass": "¡Fluíste como el AGUA!",
+    "fail": "Te ahogaste en un charquito, pero volverás con marea alta."
+  },
+  "grass": {
+    "pass": "¡Creciste como una PLANTA bien regada!",
+    "fail": "Hasta las PLANTAS necesitan tiempo para florecer."
+  },
+  "electric": {
+    "pass": "¡Qué chispa tienes!",
+    "fail": "La próxima vez brillarás."
+  },
+  "flying": {
+    "pass": "¡La pillaste al vuelo!",
+    "fail": "Vuela alto..."
+  },
+  "fighting": {
+    "pass": "¡Tienes la voluntad del guerrero!",
+    "fail": "Caíste en combate."
+  },
+  "bug": {
+    "pass": "¡Buen sentido aracnído!",
+    "fail": "Te enredaste..."
+  },
+  "rock": {
+    "pass": "¡Sólido como una ROCA!",
+    "fail": "No tropieces dos veces con la misma ROCA."
+  },
+  "psychic": {
+    "pass": "¿Me leíste la mente?",
+    "fail": "Esa no la predijiste..."
+  },
+  "poison": {
+    "pass": "¡Estas vacunado!",
+    "fail": "Te intoxicó la duda..."
+  },
+  "ground": {
+    "pass": "¡Pisaste TIERRA firme!",
+    "fail": "No hay problema en caer, pero levántate."
+  },
+  "ghost": {
+    "pass": "¡Lo hiciste de miedo!",
+    "fail": "¿Quien es el verdadero FANTASMA?"
+  },
+  "ice": {
+    "pass": "¡Respondiste con sangre fría!",
+    "fail": "Ahí patinaste un poco."
+  },
+  "dragon": {
+    "pass": "¡Tu conocimiento es tan legendario como los DRAGONES!",
+    "fail": "Tienes que aprender cómo entrenar a tu DRAGÓN..."
+  },
+  "dark": {
+    "pass": "¡Así me gusta! ¡Acertando a diestra y SINIESTRA!", 
+    "fail": "Veo tu futuro un poco SINIESTRO..."
+  },
+  "fairy": {
+    "pass": "¡Brillante!",
+    "fail": "Creo que necesitas un HADA madrina que te aconseje..."
+  },
+  "steel": {
+    "pass": "¡De ACERO eres, de la cabeza a los pies!",
+    "fail": "No te ralles..."
+  }
+}

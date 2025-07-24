@@ -1,0 +1,74 @@
+{
+  "normal": {
+    "pass": "You handled Normal type with ease!",
+    "fail": "Normal type tripped you up this time."
+  },
+  "fire": {
+    "pass": "You burned through Fire type questions!",
+    "fail": "Fire type was too hot to handle."
+  },
+  "water": {
+    "pass": "You made a splash with Water type!",
+    "fail": "Water type left you all wet."
+  },
+  "electric": {
+    "pass": "You were shockingly good with Electric type!",
+    "fail": "Electric type left you stunned."
+  },
+  "grass": {
+    "pass": "You grew through Grass type questions!",
+    "fail": "Grass type tangled you up."
+  },
+  "ice": {
+    "pass": "You kept your cool with Ice type!",
+    "fail": "Ice type froze your progress."
+  },
+  "fighting": {
+    "pass": "You fought well with Fighting type!",
+    "fail": "Fighting type knocked you out."
+  },
+  "poison": {
+    "pass": "You neutralized Poison type!",
+    "fail": "Poison type was toxic for your score."
+  },
+  "ground": {
+    "pass": "You stood firm against Ground type!",
+    "fail": "Ground type tripped you up."
+  },
+  "flying": {
+    "pass": "You soared through Flying type!",
+    "fail": "Flying type was out of reach."
+  },
+  "psychic": {
+    "pass": "You read the Psychic type perfectly!",
+    "fail": "Psychic type clouded your mind."
+  },
+  "bug": {
+    "pass": "You squashed the Bug type questions!",
+    "fail": "Bug type bugged you this time."
+  },
+  "rock": {
+    "pass": "You rocked the Rock type!",
+    "fail": "Rock type was a hard obstacle."
+  },
+  "ghost": {
+    "pass": "You weren't spooked by Ghost type!",
+    "fail": "Ghost type haunted your answer."
+  },
+  "dragon": {
+    "pass": "You tamed the Dragon type!",
+    "fail": "Dragon type was too fierce."
+  },
+  "dark": {
+    "pass": "You saw through the Dark type!",
+    "fail": "Dark type left you in the shadows."
+  },
+  "steel": {
+    "pass": "You were solid against Steel type!",
+    "fail": "Steel type was too tough."
+  },
+  "fairy": {
+    "pass": "You charmed the Fairy type!",
+    "fail": "Fairy type bewitched you."
+  }
+}
