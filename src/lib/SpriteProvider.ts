@@ -1,6 +1,7 @@
 // SpriteProvider.ts
 
 import { PokemonType } from '@/types/PokemonType';
+import { AssetHelper } from './AssetHelper';
 
 const spriteCDNMap = {
   charmander: { id: 4, hasFemaleVariant: false, type: PokemonType.Fire },
@@ -136,13 +137,13 @@ export class SpriteProvider {
   static getTypeSpriteWithWord(type: PokemonType): string {
     const entry = typeSpriteCDNMap[type as keyof typeof typeSpriteCDNMap];
     if (!entry) return '';
-    return entry.word;
+    return AssetHelper.getAssetPath(entry.word);
   }
 
   static getTypeSpriteSymbol(type: PokemonType): string {
     const entry = typeSpriteCDNMap[type as keyof typeof typeSpriteCDNMap];
     if (!entry) return '';
-    return entry.symbol;
+    return AssetHelper.getAssetPath(entry.symbol);
   }
 
   /**

@@ -6,6 +6,7 @@ export class PokemonProvider {
   static getAll() {
     return pokemonListJson.map((p) => ({
       ...p,
+      id: p.id.toString(),
       type: PokemonType[p.type as keyof typeof PokemonType],
       sprite: SpriteProvider.getPokemonHomeSprite(p.name),
     }));
