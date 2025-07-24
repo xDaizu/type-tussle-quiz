@@ -204,7 +204,7 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
                     const correctOption = quizAnswerOptions.find(option => option.effectiveness === showResult.effectiveness);
                     return (
                       <span
-                        className={`font-bold inline-block px-3 py-1 rounded drop-shadow ${correctOption?.gradientClass || ''} ${correctOption?.ringClass || ''}`}
+                        className={`font-bold inline-block px-3 py-1 rounded drop-shadow ${correctOption?.gradientClass || ''} ${correctOption?.textColorClass || ''} ${correctOption?.ringClass || ''}`}
                       >
                         {getEffectivenessText(showResult.effectiveness)} (×{showResult.effectiveness})
                       </span>
@@ -219,7 +219,7 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
                           {selectedEffectiveness !== null ? getEffectivenessText(selectedEffectiveness) + ` (×${selectedEffectiveness})` : ''}
                         </span>
                         <span
-                          className={`font-bold inline-block px-3 py-1 rounded drop-shadow ${correctOption?.gradientClass || ''} ${correctOption?.ringClass || ''}`}
+                          className={`font-bold inline-block px-3 py-1 rounded drop-shadow ${correctOption?.gradientClass || ''} ${correctOption?.textColorClass || ''} ${correctOption?.ringClass || ''}`}
                         >
                           {getEffectivenessText(showResult.effectiveness)} (×{showResult.effectiveness})
                         </span>
