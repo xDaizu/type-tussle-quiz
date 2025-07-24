@@ -167,7 +167,7 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
             <h2 className="text-l font-bold mb-2 text-center text-foreground">
               How effective is this attack?
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-2">
               {quizAnswerOptions.map(option => (
                 <QuizAnswerButton
                   key={option.effectiveness}

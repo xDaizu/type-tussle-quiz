@@ -41,14 +41,14 @@ const BattleArena = ({ attacker, defender, showResult }: BattleArenaProps) => {
           <span className="font-bold text-primary">{defender.name}</span>
         </p>
       </div>
-      <div className="flex items-center justify-center gap-8 flex-wrap">
+      <div className="flex flex-row items-center justify-center gap-2 sm:gap-8 flex-nowrap">
         {/* Attacker Pokemon */}
-        <div className="flex-1 min-w-[220px] max-w-[300px]">
+        <div className="flex-1 min-w-0 max-w-[300px] w-1/2">
           <PokemonCard key={attacker.id + '-' + attacker.name} pokemon={attacker} isAttacker />
         </div>
 
-        {/* Battle Arrow */}
-        <div className="flex flex-col items-center gap-4 min-w-[140px]">
+        {/* Battle Arrow - hidden on mobile, visible on sm+ */}
+        <div className="hidden sm:flex flex-col items-center gap-4 min-w-[140px]">
           <div className="text-lg font-bold text-muted-foreground uppercase tracking-wider">
             Attacks
           </div>
@@ -72,7 +72,7 @@ const BattleArena = ({ attacker, defender, showResult }: BattleArenaProps) => {
         </div>
 
         {/* Defender Pokemon */}
-        <div className="flex-1 min-w-[220px] max-w-[300px]">
+        <div className="flex-1 min-w-0 max-w-[300px] w-1/2">
           <PokemonCard key={defender.id + '-' + defender.name} pokemon={defender} />
         </div>
       </div>
