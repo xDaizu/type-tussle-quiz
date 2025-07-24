@@ -41,7 +41,17 @@ const BattleArena = ({ attacker, defender, showResult }: BattleArenaProps) => {
           <span className="font-bold text-primary">{defender.name}</span>
         </p>
       </div>
-      <div className="flex flex-row items-center justify-center gap-2 sm:gap-8 flex-nowrap">
+      <div className="relative">
+        {/* Mobile floater attack - only on mobile, floating above cards */}
+        <div className="flex items-center sm:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+          {typeSymbol && (
+            <img src={typeSymbol} alt={`${attacker.type} type`} className="w-8 h-8" />
+          )}
+          <div className={`w-1 h-1 bg-${attacker.type} rounded-full animate-ping`}></div>
+          <div className={`w-2 h-2 bg-${attacker.type} rounded-full animate-ping`} style={{ animationDelay: '0.15s' }}></div>
+          <div className={`w-3 h-3 bg-${attacker.type} rounded-full animate-ping`} style={{ animationDelay: '0.2s' }}></div>
+        </div>
+        <div className="flex flex-row items-center justify-center gap-2 sm:gap-8 flex-nowrap mt-12">
         {/* Attacker Pokemon */}
         <div className="flex-1 min-w-0 max-w-[300px] w-1/2">
           <PokemonCard key={attacker.id + '-' + attacker.name} pokemon={attacker} isAttacker />
@@ -70,12 +80,14 @@ const BattleArena = ({ attacker, defender, showResult }: BattleArenaProps) => {
             <div className={`w-2 h-2 bg-${attacker.type} rounded-full animate-ping`} style={{ animationDelay: '0.2s' }}></div>
           </div>
         </div>
+        {/* Mobile floater attack (old location) */}
 
         {/* Defender Pokemon */}
         <div className="flex-1 min-w-0 max-w-[300px] w-1/2">
           <PokemonCard key={defender.id + '-' + defender.name} pokemon={defender} />
         </div>
-      </div>
+      </div> {/* close flex row */}
+      </div> {/* close relative wrapper */}
 
      
     </Card>
