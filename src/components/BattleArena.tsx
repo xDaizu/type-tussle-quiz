@@ -29,6 +29,18 @@ const BattleArena = ({ attacker, defender, showResult }: BattleArenaProps) => {
   const typeSymbol = SpriteProvider.getTypeSpriteSymbol(attacker.type);
   return (
     <Card className="p-8 shadow-card border-0">
+       {/* Battle Description */}
+       <div className="text-center mt-8 p-6 bg-gradient-to-r from-muted/40 to-muted/60 rounded-2xl shadow-card-inset">
+        <p className="text-lg leading-relaxed">
+          <span className="font-bold text-primary">{attacker.name}</span>
+          <span className="mx-2 text-muted-foreground">uses a</span>
+          <span className="font-bold capitalize bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            {attacker.type}-type attack
+          </span>
+          <span className="mx-2 text-muted-foreground">on</span>
+          <span className="font-bold text-primary">{defender.name}</span>
+        </p>
+      </div>
       <div className="flex items-center justify-center gap-8 flex-wrap">
         {/* Attacker Pokemon */}
         <div className="flex-1 min-w-[220px] max-w-[300px]">
@@ -65,18 +77,7 @@ const BattleArena = ({ attacker, defender, showResult }: BattleArenaProps) => {
         </div>
       </div>
 
-      {/* Battle Description */}
-      <div className="text-center mt-8 p-6 bg-gradient-to-r from-muted/40 to-muted/60 rounded-2xl shadow-card-inset">
-        <p className="text-lg leading-relaxed">
-          <span className="font-bold text-primary">{attacker.name}</span>
-          <span className="mx-2 text-muted-foreground">uses a</span>
-          <span className="font-bold capitalize bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            {attacker.type}-type attack
-          </span>
-          <span className="mx-2 text-muted-foreground">on</span>
-          <span className="font-bold text-primary">{defender.name}</span>
-        </p>
-      </div>
+     
     </Card>
   );
 };
