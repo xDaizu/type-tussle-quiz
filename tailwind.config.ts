@@ -170,5 +170,9 @@ export default {
 		'bg-normal/80', 'bg-fire/80', 'bg-water/80', 'bg-grass/80', 'bg-electric/80', 'bg-ice/80', 'bg-fighting/80', 'bg-poison/80', 'bg-ground/80', 'bg-flying/80', 'bg-psychic/80', 'bg-bug/80', 'bg-rock/80', 'bg-ghost/80', 'bg-dragon/80', 'bg-dark/80', 'bg-steel/80', 'bg-fairy/80',
 		'bg-normal/60', 'bg-fire/60', 'bg-water/60', 'bg-grass/60', 'bg-electric/60', 'bg-ice/60', 'bg-fighting/60', 'bg-poison/60', 'bg-ground/60', 'bg-flying/60', 'bg-psychic/60', 'bg-bug/60', 'bg-rock/60', 'bg-ghost/60', 'bg-dragon/60', 'bg-dark/60', 'bg-steel/60', 'bg-fairy/60',
 		'bg-normal/30', 'bg-fire/30', 'bg-water/30', 'bg-grass/30', 'bg-electric/30', 'bg-ice/30', 'bg-fighting/30', 'bg-poison/30', 'bg-ground/30', 'bg-flying/30', 'bg-psychic/30', 'bg-bug/30', 'bg-rock/30', 'bg-ghost/30', 'bg-dragon/30', 'bg-dark/30', 'bg-steel/30', 'bg-fairy/30',
+		// Opacity variants for text colors
+		'text-normal/80', 'text-fire/80', 'text-water/80', 'text-grass/80', 'text-electric/80', 'text-ice/80', 'text-fighting/80', 'text-poison/80', 'text-ground/80', 'text-flying/80', 'text-psychic/80', 'text-bug/80', 'text-rock/80', 'text-ghost/80', 'text-dragon/80', 'text-dark/80', 'text-steel/80', 'text-fairy/80',
+		'text-normal/60', 'text-fire/60', 'text-water/60', 'text-grass/60', 'text-electric/60', 'text-ice/60', 'text-fighting/60', 'text-poison/60', 'text-ground/60', 'text-flying/60', 'text-psychic/60', 'text-bug/60', 'text-rock/60', 'text-ghost/60', 'text-dragon/60', 'text-dark/60', 'text-steel/60', 'text-fairy/60',
+		'text-normal/30', 'text-fire/30', 'text-water/30', 'text-grass/30', 'text-electric/30', 'text-ice/30', 'text-fighting/30', 'text-poison/30', 'text-ground/30', 'text-flying/30', 'text-psychic/30', 'text-bug/30', 'text-rock/30', 'text-ghost/30', 'text-dragon/30', 'text-dark/30', 'text-steel/30', 'text-fairy/30',
 	],
 } satisfies Config;

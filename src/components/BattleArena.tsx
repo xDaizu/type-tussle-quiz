@@ -34,7 +34,7 @@ const BattleArena = ({ attacker, defender, showResult }: BattleArenaProps) => {
         <p className="text-lg leading-relaxed">
           <span className="font-bold text-primary">{attacker.name}</span>
           <span className="mx-2 text-muted-foreground">uses a</span>
-          <span className="font-bold capitalize bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <span className={`font-bold capitalize bg-gradient-to-r from-black to-${attacker.type} bg-clip-text text-${attacker.type}/80`}>
             {attacker.type}-type attack
           </span>
           <span className="mx-2 text-muted-foreground">on</span>
