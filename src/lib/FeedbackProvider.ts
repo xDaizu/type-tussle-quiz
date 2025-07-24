@@ -1,6 +1,6 @@
 import feedbackData from './answer-feedback.es.json';
 
-export class FeedbackProvider {
+export class FeedbackFlavourProvider {
   static getFeedback(type: string, result: 'pass' | 'fail'): string {
     // Normalize type to lowercase for lookup
     const entry = feedbackData[type.toLowerCase()];

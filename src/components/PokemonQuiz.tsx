@@ -11,7 +11,7 @@ import { PokemonType } from '@/types/PokemonType';
 import { PokemonProvider } from '@/lib/PokemonProvider';
 import { quizAnswerOptions } from '@/lib/quizAnswerOptions';
 import QuizAnswerButton from './QuizAnswerButton';
-import { FeedbackProvider } from '@/lib/FeedbackProvider';
+import { FeedbackFlavourProvider } from '@/lib/FeedbackProvider';
 
 
 type Pokemon = ReturnType<typeof PokemonProvider.getAll>[number];
@@ -24,6 +24,7 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
   const [defender, setDefender] = useState<Pokemon | null>(null);
   const [gameOver, setGameOver] = useState(false);
   const [showResult, setShowResult] = useState<{correct: boolean, effectiveness: EffectivenessType} | null>(null);
+  const [selectedEffectiveness, setSelectedEffectiveness] = useState<EffectivenessType | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const skipEnabled = useRef(false);
 
@@ -91,7 +92,7 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
     };
 
     // Set up timeout
-    timeoutRef.current = setTimeout(advance, showResult.correct ? 1000 : 2000);
+    timeoutRef.current = setTimeout(advance, showResult.correct ? 1000 : 2500);
 
     // Set up click-to-skip
     const handleClick = () => advance();
@@ -108,11 +109,16 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
     };
   }, [showResult, currentRound, totalRounds]);
 
+  useEffect(() => {
+    if (!showResult) setSelectedEffectiveness(null);
+  }, [showResult]);
+
   const handleAnswer = (selectedEffectiveness: EffectivenessType) => {
     if (!attacker || !defender || showResult) return;
 
     const correctEffectiveness = getTypeEffectiveness(attacker.type as PokemonType, defender.type as PokemonType);
     const isCorrect = selectedEffectiveness === correctEffectiveness;
+    setSelectedEffectiveness(selectedEffectiveness);
     
     if (isCorrect) {
       setScore(prev => prev + 1);
@@ -192,11 +198,40 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
               <div className={`text-2xl font-bold mb-2 text-${getEffectivenessColor(showResult.effectiveness)}`}>
                 {showResult.correct ? '✅ Correct!' : '❌ Wrong!'}
               </div>
-              <p className="text-lg">
-                {getEffectivenessText(showResult.effectiveness)} (×{showResult.effectiveness})
+              <p id="effectiveness-text" className="text-lg">
+                {showResult.correct ? (
+                  (() => {
+                    const correctOption = quizAnswerOptions.find(option => option.effectiveness === showResult.effectiveness);
+                    return (
+                      <span
+                        className={`font-bold inline-block px-3 py-1 rounded drop-shadow ${correctOption?.colorClass || ''} ${correctOption?.textColorClass || ''} ${correctOption?.ringClass || ''}`}
+                        style={correctOption?.style}
+                      >
+                        {getEffectivenessText(showResult.effectiveness)} (×{showResult.effectiveness})
+                      </span>
+                    );
+                  })()
+                ) : (
+                  (() => {
+                    const correctOption = quizAnswerOptions.find(option => option.effectiveness === showResult.effectiveness);
+                    return (
+                      <>
+                        <span className="line-through text-gray-400 mr-2">
+                          {selectedEffectiveness !== null ? getEffectivenessText(selectedEffectiveness) + ` (×${selectedEffectiveness})` : ''}
+                        </span>
+                        <span
+                          className={`font-bold inline-block px-3 py-1 rounded drop-shadow ${correctOption?.colorClass || ''} ${correctOption?.textColorClass || ''} ${correctOption?.ringClass || ''}`}
+                          style={correctOption?.style}
+                        >
+                          {getEffectivenessText(showResult.effectiveness)} (×{showResult.effectiveness})
+                        </span>
+                      </>
+                    );
+                  })()
+                )}
               </p>
               <p className="text-m">
-                {attacker ? FeedbackProvider.getFeedback(attacker.type, showResult.correct ? 'pass' : 'fail') : ''}
+                {attacker ? FeedbackFlavourProvider.getFeedback(attacker.type, showResult.correct ? 'pass' : 'fail') : ''}
               </p>
             </Card>
           )}
