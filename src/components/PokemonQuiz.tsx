@@ -151,36 +151,64 @@ const PokemonQuiz = ({ totalRounds = 5 }: { totalRounds?: number }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <button
                 onClick={() => handleAnswer(Effectiveness.SuperEffective)}
-                className="group relative h-20 text-lg font-bold rounded-2xl border border-white/30 bg-white/20 backdrop-blur-md shadow-lg transition-all duration-300 hover:brightness-110 hover:shadow-xl hover:border-white/60 focus:outline-none focus:ring-2 focus:ring-super-effective/40"
+                className="group relative h-20 text-lg font-bold rounded-2xl border-2 shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-300/40"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(178,255,214,0.7) 0%, rgba(102,232,180,0.6) 100%)',
+                  backdropFilter: 'blur(8px)',
+                  borderColor: 'rgba(102,232,180,0.5)',
+                }}
+                onMouseOver={e => e.currentTarget.style.boxShadow = '0 8px 32px 0 rgba(102,232,180,0.25)'}
+                onMouseOut={e => e.currentTarget.style.boxShadow = ''}
               >
-                <div className="flex flex-col items-center justify-center h-full text-super-effective group-hover:text-super-effective drop-shadow-md">
+                <div className="flex flex-col items-center justify-center h-full text-white drop-shadow-md">
                   <span className="text-lg font-bold">Super Effective</span>
                   <span className="text-sm opacity-75">(×2)</span>
                 </div>
               </button>
               <button
                 onClick={() => handleAnswer(Effectiveness.Normal)}
-                className="group relative h-20 text-lg font-bold rounded-2xl border border-white/30 bg-white/20 backdrop-blur-md shadow-lg transition-all duration-300 hover:brightness-110 hover:shadow-xl hover:border-white/60 focus:outline-none focus:ring-2 focus:ring-normal-effective/40"
+                className="group relative h-20 text-lg font-bold rounded-2xl border-2 shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-300/40"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(220,220,220,0.5) 100%)',
+                  backdropFilter: 'blur(8px)',
+                  borderColor: 'rgba(200,200,200,0.5)',
+                }}
+                onMouseOver={e => e.currentTarget.style.boxShadow = '0 8px 32px 0 rgba(180,180,180,0.18)'}
+                onMouseOut={e => e.currentTarget.style.boxShadow = ''}
               >
-                <div className="flex flex-col items-center justify-center h-full text-normal-effective group-hover:text-normal-effective drop-shadow-md">
+                <div className="flex flex-col items-center justify-center h-full text-black drop-shadow-md">
                   <span className="text-lg font-bold">Normal</span>
                   <span className="text-sm opacity-75">(×1)</span>
                 </div>
               </button>
               <button
                 onClick={() => handleAnswer(Effectiveness.NotVeryEffective)}
-                className="group relative h-20 text-lg font-bold rounded-2xl border border-white/30 bg-white/20 backdrop-blur-md shadow-lg transition-all duration-300 hover:brightness-110 hover:shadow-xl hover:border-white/60 focus:outline-none focus:ring-2 focus:ring-not-very-effective/40"
+                className="group relative h-20 text-lg font-bold rounded-2xl border-2 shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-300/40"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255,183,183,0.7) 0%, rgba(255,127,127,0.6) 100%)',
+                  backdropFilter: 'blur(8px)',
+                  borderColor: 'rgba(255,127,127,0.5)',
+                }}
+                onMouseOver={e => e.currentTarget.style.boxShadow = '0 8px 32px 0 rgba(255,127,127,0.22)'}
+                onMouseOut={e => e.currentTarget.style.boxShadow = ''}
               >
-                <div className="flex flex-col items-center justify-center h-full text-not-very-effective group-hover:text-not-very-effective drop-shadow-md">
+                <div className="flex flex-col items-center justify-center h-full text-white drop-shadow-md">
                   <span className="text-lg font-bold">Not Very Effective</span>
                   <span className="text-sm opacity-75">(×0.5)</span>
                 </div>
               </button>
               <button
                 onClick={() => handleAnswer(Effectiveness.NoEffect)}
-                className="group relative h-20 text-lg font-bold rounded-2xl border border-white/30 bg-white/20 backdrop-blur-md shadow-lg transition-all duration-300 hover:brightness-110 hover:shadow-xl hover:border-white/60 focus:outline-none focus:ring-2 focus:ring-no-effect/40"
+                className="group relative h-20 text-lg font-bold rounded-2xl border-2 shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-700/40"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(60,60,60,0.7) 0%, rgba(30,30,30,0.6) 100%)',
+                  backdropFilter: 'blur(8px)',
+                  borderColor: 'rgba(60,60,60,0.5)',
+                }}
+                onMouseOver={e => e.currentTarget.style.boxShadow = '0 8px 32px 0 rgba(60,60,60,0.22)'}
+                onMouseOut={e => e.currentTarget.style.boxShadow = ''}
               >
-                <div className="flex flex-col items-center justify-center h-full text-no-effect group-hover:text-no-effect drop-shadow-md">
+                <div className="flex flex-col items-center justify-center h-full text-white drop-shadow-md">
                   <span className="text-lg font-bold">No Effect</span>
                   <span className="text-sm opacity-75">(×0)</span>
                 </div>
