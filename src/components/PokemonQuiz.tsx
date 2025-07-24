@@ -7,14 +7,14 @@ import { PokemonType } from '@/types/PokemonType';
 import PokemonCard from './PokemonCard';
 import BattleArena from './BattleArena';
 import ScoreDisplay from './ScoreDisplay';
-import { getTypeEffectiveness, Effectiveness } from '@/lib/utils';
+import { getTypeEffectiveness, Effectiveness, getResultPhrase } from '@/lib/utils';
 import { PokemonProvider } from '@/lib/PokemonProvider';
 
 
 type Pokemon = ReturnType<typeof PokemonProvider.getAll>[number];
 type EffectivenessType = Effectiveness;
 
-const PokemonQuiz = ({ totalRounds = 5 }: { totalRounds?: number }) => {
+const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
   const [currentRound, setCurrentRound] = useState(1);
   const [score, setScore] = useState(0);
   const [attacker, setAttacker] = useState<Pokemon | null>(null);
@@ -85,30 +85,19 @@ const PokemonQuiz = ({ totalRounds = 5 }: { totalRounds?: number }) => {
   };
 
   if (gameOver) {
+    const resultPhrase = getResultPhrase(score, 10);
     return (
       <div className="min-h-screen bg-arena-gradient flex items-center justify-center p-4">
         <Card className="p-8 max-w-md w-full text-center shadow-card animate-bounce-in">
           <Trophy className="w-16 h-16 mx-auto mb-4 text-accent" />
           <h1 className="text-3xl font-bold mb-4">Quiz Complete!</h1>
           <p className="text-xl mb-6">
-            Your Score: <span className="font-bold text-primary">{score}/{totalRounds}</span>
+            Your Score: <span className="font-bold text-primary">{score}/10</span>
           </p>
           <div className="mb-6">
-            {score === totalRounds && (
-              <Badge className="bg-super-effective text-white text-lg py-2 px-4">
-                Perfect Score! 🎉
-              </Badge>
-            )}
-            {score === totalRounds - 1 && (
-              <Badge className="bg-accent text-accent-foreground text-lg py-2 px-4">
-                Great Job! 👏
-              </Badge>
-            )}
-            {score <= totalRounds - 2 && (
-              <Badge className="bg-not-very-effective text-white text-lg py-2 px-4">
-                Keep Practicing! 💪
-              </Badge>
-            )}
+            <Badge className="bg-super-effective text-white text-lg py-2 px-4">
+              {resultPhrase}
+            </Badge>
           </div>
           <Button onClick={resetGame} className="w-full" size="lg">
             <RotateCcw className="w-4 h-4 mr-2" />
