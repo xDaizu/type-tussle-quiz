@@ -191,6 +191,9 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
               {showResult.correct ? '✅ Correct!' : '❌ Wrong!'}
             </div>
             <p className="text-lg">
+              {getEffectivenessText(showResult.effectiveness)} (×{showResult.effectiveness})
+            </p>
+            <p className="text-m">
               {attacker ? FeedbackProvider.getFeedback(attacker.type, showResult.correct ? 'pass' : 'fail') : ''}
             </p>
           </Card>
