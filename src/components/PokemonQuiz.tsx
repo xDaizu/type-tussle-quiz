@@ -24,9 +24,37 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
 
   const pokemonList = PokemonProvider.getAll();
 
+  const getRandomType = (): PokemonType => {
+    const types = Object.values(PokemonType);
+    return types[Math.floor(Math.random() * types.length)];
+  };
+
   const generateBattle = () => {
-    const randomAttacker = PokemonProvider.getRandom();
-    const randomDefender = PokemonProvider.getRandom();
+    let randomAttacker = null;
+    let randomDefender = null;
+    let attackerType: PokemonType;
+    let defenderType: PokemonType;
+
+    // Keep trying until we get a valid attacker
+    while (!randomAttacker) {
+      try {
+        attackerType = getRandomType();
+        randomAttacker = PokemonProvider.getRandomByType(attackerType);
+      } catch (e) {
+        // Try again
+      }
+    }
+
+    // Keep trying until we get a valid defender
+    while (!randomDefender) {
+      try {
+        defenderType = getRandomType();
+        randomDefender = PokemonProvider.getRandomByType(defenderType);
+      } catch (e) {
+        // Try again
+      }
+    }
+
     setAttacker(randomAttacker);
     setDefender(randomDefender);
     setShowResult(null);

@@ -16,4 +16,11 @@ export class PokemonProvider {
     const all = this.getAll();
     return all[Math.floor(Math.random() * all.length)];
   }
+
+  static getRandomByType(type: PokemonType) {
+    const all = this.getAll();
+    const filtered = all.filter((p) => p.type === type);
+    if (filtered.length === 0) throw new Error(`No Pokémon found for type: ${type}`);
+    return filtered[Math.floor(Math.random() * filtered.length)];
+  }
 } 
