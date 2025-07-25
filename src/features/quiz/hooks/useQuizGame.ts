@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { PokemonType } from '@/features/pokemon/types/PokemonType';
-import { PokemonProvider } from '@/features/pokemon/services/PokemonProvider';
+import { PokemonService } from '@/features/pokemon/services/PokemonService';
 
-export type Pokemon = ReturnType<typeof PokemonProvider.getAll>[number];
+export type Pokemon = ReturnType<typeof PokemonService.getAll>[number];
 
 export interface QuizGameState {
   currentRound: number;
@@ -39,7 +39,7 @@ export function useQuizGame(totalRounds: number = 10): QuizGameState {
   const [defender, setDefender] = useState<Pokemon | null>(null);
   const [gameOver, setGameOver] = useState(false);
 
-  const pokemonList = PokemonProvider.getAll();
+  const pokemonList = PokemonService.getAll();
 
   const getRandomType = (): PokemonType => {
     const types = Object.values(PokemonType);
@@ -55,13 +55,13 @@ export function useQuizGame(totalRounds: number = 10): QuizGameState {
     while (!randomAttacker) {
       try {
         attackerType = getRandomType();
-        randomAttacker = PokemonProvider.getRandomByType(attackerType);
+        randomAttacker = PokemonService.getRandomByType(attackerType);
       } catch (e) {}
     }
     while (!randomDefender) {
       try {
         defenderType = getRandomType();
-        randomDefender = PokemonProvider.getRandomByType(defenderType);
+        randomDefender = PokemonService.getRandomByType(defenderType);
       } catch (e) {}
     }
     setAttacker(randomAttacker);

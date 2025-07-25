@@ -7,7 +7,7 @@ import { useQuizGame } from '@/hooks/useQuizGame';
 import { useQuizFeedback } from '@/hooks/useQuizFeedback';
 import { useQuizTimer } from '@/hooks/useQuizTimer';
 import { useQuizNavigation } from '@/hooks/useQuizNavigation';
-import { FeedbackFlavourProvider } from '@/lib/FeedbackProvider';
+import { FeedbackFlavourProvider } from '@/features/quiz/services/FeedbackService';
 
 const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
   const game = useQuizGame(totalRounds);

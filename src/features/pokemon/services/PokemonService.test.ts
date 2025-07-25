@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { PokemonProvider } from './PokemonProvider';
+import { PokemonService } from './PokemonService';
 import { PokemonType } from '@/features/pokemon/types/PokemonType';
 
 
 describe('PokemonProvider', () => {
   it('should return all Pokémon with correct structure', () => {
-    const all = PokemonProvider.getAll();
+    const all = PokemonService.getAll();
     expect(Array.isArray(all)).toBe(true);
     expect(all.length).toBeGreaterThan(0);
     for (const p of all) {
@@ -19,8 +19,8 @@ describe('PokemonProvider', () => {
   });
 
   it('should return a random Pokémon from the list', () => {
-    const random = PokemonProvider.getRandom();
-    const all = PokemonProvider.getAll();
+    const random = PokemonService.getRandom();
+    const all = PokemonService.getAll();
     expect(all).toContainEqual(random);
   });
 }); 

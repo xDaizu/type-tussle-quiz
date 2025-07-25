@@ -2,7 +2,7 @@ import { Card } from '@/shared/components/ui/ui/card';
 import { useState } from 'react';
 
 // Import type icons
-import { SpriteProvider } from '@/features/pokemon/services/SpriteProvider';
+import { SpriteService } from '@/features/pokemon/services/SpriteService';
 import { PokemonType } from '@/types/PokemonType';
 
 export const typeColorMap = {
@@ -27,8 +27,8 @@ const PokemonCard = ({ pokemon, isAttacker = false, className = '' }: PokemonCar
   const [sex, setSex] = useState<'male' | 'female'>(() => (Math.random() < 0.7 ? 'female' : 'male'));
   const typeColor = typeColorMap[pokemon.type as keyof typeof typeColorMap];
   // Use SpriteProvider to get the correct sprite URL
-  const spriteUrl = SpriteProvider.getPokemonHomeSprite(pokemon.name, sex);
-  const isLeftFacing = SpriteProvider.isLeftFacing(pokemon.name);
+  const spriteUrl = SpriteService.getPokemonHomeSprite(pokemon.name, sex);
+  const isLeftFacing = SpriteService.isLeftFacing(pokemon.name);
   const shouldFlip = isLeftFacing ? !isAttacker : isAttacker;
   return (
     <Card className={`p-2 text-center shadow-card hover:shadow-pokemon-glow transition-all duration-500 border-0 ${isAttacker ? 'animate-slide-in' : 'animate-shake'} ${className}`}>
@@ -44,7 +44,7 @@ const PokemonCard = ({ pokemon, isAttacker = false, className = '' }: PokemonCar
             onError={e => {
                 setSex('male');
                 e.currentTarget.onerror = null;
-                e.currentTarget.src = SpriteProvider.getPokemonHomeSprite(pokemon.name, 'male');
+                e.currentTarget.src = SpriteService.getPokemonHomeSprite(pokemon.name, 'male');
             }}
           />
         </div>
@@ -59,7 +59,7 @@ const PokemonCard = ({ pokemon, isAttacker = false, className = '' }: PokemonCar
       <div className="flex flex-col items-center gap-3">
         <div className="bg-gradient-to-r from-background to-muted p-2 rounded-xl shadow-card-inset">
           <img
-            src={SpriteProvider.getTypeSpriteWithWord(pokemon.type)}
+            src={SpriteService.getTypeSpriteWithWord(pokemon.type)}
             alt={`${pokemon.type} type`}
             className="h-8 w-auto object-contain"
           />

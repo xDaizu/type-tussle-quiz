@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import { getTypeEffectiveness, Effectiveness } from './TypeEffectivenessProvider';
+import { getTypeEffectiveness, Effectiveness } from './TypeEffectivenessService';
 import { PokemonType } from '@/features/pokemon/types/PokemonType';
 
-describe('TypeEffectivenessProvider', () => {
+describe('TypeEffectivenessService', () => {
   it('returns SuperEffective (2) for bug vs dark', () => {
     expect(getTypeEffectiveness(PokemonType.Bug, PokemonType.Dark)).toBe(Effectiveness.SuperEffective);
   });

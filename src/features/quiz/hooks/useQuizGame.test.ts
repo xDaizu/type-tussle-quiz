@@ -2,9 +2,9 @@ import { renderHook, act } from '@testing-library/react';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { useQuizGame } from './useQuizGame';
 
-// Mock PokemonProvider for deterministic results
-vi.mock('@/lib/PokemonProvider', () => ({
-  PokemonProvider: {
+// Mock PokemonService for deterministic results
+vi.mock('@/features/pokemon/services/PokemonService', () => ({
+  PokemonService: {
     getAll: () => [{ id: 1, name: 'Bulbasaur', type: 'Grass' }, { id: 2, name: 'Charmander', type: 'Fire' }],
     getRandomByType: (type: string) => ({ id: 1, name: 'Bulbasaur', type }),
   },
