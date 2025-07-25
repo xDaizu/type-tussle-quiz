@@ -5,14 +5,15 @@ import QuizResultFeedback from './QuizResultFeedback';
 import QuizAnswerSection from './QuizAnswerSection';
 import { Effectiveness } from '@/shared/services/utils';
 import { quizAnswerOptions } from '@/features/quiz/config/quizAnswerOptions';
+import { Pokemon } from '@/features/quiz/hooks/useQuizGame';
 
 interface QuizActiveGameProps {
   currentRound: number;
   score: number;
   totalRounds: number;
-  attacker: any;
-  defender: any;
-  showResult: any;
+  attacker: Pokemon | null;
+  defender: Pokemon | null;
+  showResult: { correct: boolean; effectiveness: Effectiveness } | null;
   selectedEffectiveness: Effectiveness | null;
   handleAnswer: (effectiveness: Effectiveness) => boolean;
   setScore: (score: number) => void;

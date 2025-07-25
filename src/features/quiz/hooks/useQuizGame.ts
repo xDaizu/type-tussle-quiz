@@ -56,13 +56,17 @@ export function useQuizGame(totalRounds: number = 10): QuizGameState {
       try {
         attackerType = getRandomType();
         randomAttacker = PokemonService.getRandomByType(attackerType);
-      } catch (e) {}
+      } catch (e) {
+        // ignore error, will retry
+      }
     }
     while (!randomDefender) {
       try {
         defenderType = getRandomType();
         randomDefender = PokemonService.getRandomByType(defenderType);
-      } catch (e) {}
+      } catch (e) {
+        // ignore error, will retry
+      }
     }
     setAttacker(randomAttacker);
     setDefender(randomDefender);

@@ -12,7 +12,7 @@ describe('QuizResultFeedback', () => {
 
   it('displays correct result and feedback', () => {
     const { getByText } = render(<QuizResultFeedback {...baseProps} />);
-    expect(getByText('✅ Correct!')).toBeInTheDocument();
+    expect(getByText('Correct!')).toBeInTheDocument();
     expect(getByText('Great job!')).toBeInTheDocument();
   });
 
@@ -20,6 +20,6 @@ describe('QuizResultFeedback', () => {
     const { getByText } = render(
       <QuizResultFeedback {...baseProps} showResult={{ correct: false, effectiveness: 1 }} selectedEffectiveness={2} />
     );
-    expect(getByText('❌ Wrong!')).toBeInTheDocument();
+    expect(getByText('Wrong!')).toBeInTheDocument();
   });
 }); 

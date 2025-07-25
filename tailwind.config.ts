@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
@@ -152,7 +153,7 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [tailwindcssAnimate],
 	safelist: [
 		// Base classes
 		'from-normal', 'from-fire', 'from-water', 'from-grass', 'from-electric', 'from-ice', 'from-fighting', 'from-poison', 'from-ground', 'from-flying', 'from-psychic', 'from-bug', 'from-rock', 'from-ghost', 'from-dragon', 'from-dark', 'from-steel', 'from-fairy',

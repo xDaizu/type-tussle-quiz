@@ -2,6 +2,7 @@ import React from 'react';
 import { Card } from '@/shared/components/ui/ui/card';
 import { quizAnswerOptions } from '@/features/quiz/config/quizAnswerOptions';
 import { Effectiveness } from '@/shared/services/utils';
+import { Pokemon } from '@/features/quiz/hooks/useQuizGame';
 
 interface QuizResultFeedbackProps {
   showResult: {
@@ -9,7 +10,7 @@ interface QuizResultFeedbackProps {
     effectiveness: Effectiveness;
   };
   selectedEffectiveness: Effectiveness | null;
-  attacker: any;
+  attacker: Pokemon | null;
   feedbackText: string;
 }
 
@@ -27,7 +28,7 @@ const QuizResultFeedback: React.FC<QuizResultFeedbackProps> = ({ showResult, sel
   return (
     <Card className="mt-6 p-6 text-center shadow-card animate-bounce-in">
       <div className={`text-2xl font-bold mb-2 text-${showResult.correct ? 'super-effective' : 'not-very-effective'}`}>
-        {showResult.correct ? '✅ Correct!' : '❌ Wrong!'}
+        {showResult.correct ? '  Correct!' : '  Wrong!'}
       </div>
       <p id="effectiveness-text" className="text-lg">
         {showResult.correct ? (

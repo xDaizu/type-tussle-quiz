@@ -140,7 +140,7 @@ describe('TypeEffectivenessService', () => {
     for (const [attacker, defender, expected] of cases as [PokemonType, PokemonType, Effectiveness][]) {
       const result = getTypeEffectiveness(attacker, defender);
       if (result !== expected) {
-        // eslint-disable-next-line no-console
+         
         console.error(`Failed: ${attacker} vs ${defender} (expected ${expected}, got ${result})`);
       }
       expect(result).toBe(expected);

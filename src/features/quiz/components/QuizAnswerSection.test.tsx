@@ -2,7 +2,7 @@ import { render, fireEvent } from '@testing-library/react';
 import QuizAnswerSection from './QuizAnswerSection';
 import React from 'react';
 
-vi.mock('./QuizAnswerButton', () => ({ default: (props: any) => <button onClick={props.onClick}>{props.label}</button> }));
+vi.mock('./QuizAnswerButton', () => ({ default: (props: { onClick: () => void; label: string }) => <button onClick={props.onClick}>{props.label}</button> }));
 
 describe('QuizAnswerSection', () => {
   const options = [
