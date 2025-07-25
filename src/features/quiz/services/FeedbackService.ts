@@ -1,4 +1,4 @@
-import feedbackData from './answer-feedback.es.json';
+import feedbackData from '../../data/answer-feedback.json';
 
 export class FeedbackFlavourProvider {
   static getFeedback(type: string, result: 'pass' | 'fail'): string {

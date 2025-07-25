@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from '@/shared/components/ui/ui/card';
+import { Card } from '@/shared/components/ui/card';
 import { quizAnswerOptions } from '@/features/quiz/config/quizAnswerOptions';
 import { Effectiveness } from '@/shared/services/utils';
 import { Pokemon } from '@/features/quiz/hooks/useQuizGame';

@@ -6,7 +6,7 @@ import {
   ToastProvider,
   ToastTitle,
   ToastViewport,
-} from "@/components/ui/toast"
+} from "@/shared/components/ui/toast"
 import { cn } from '@/shared/services/utils';
 
 export function Toaster() {

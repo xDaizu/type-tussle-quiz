@@ -1,7 +1,7 @@
 import { ChevronRight } from 'lucide-react';
 import { PokemonType } from '@/features/pokemon/types/PokemonType';
 import PokemonCard from '@/features/pokemon/components/PokemonCard';
-import { Card } from '@/shared/components/ui/ui/card';
+import { Card } from '@/shared/components/ui/card';
 import { typeColorMap } from '@/features/pokemon/components/PokemonCard';
 import { SpriteService } from '@/features/pokemon/services/SpriteService';
 
