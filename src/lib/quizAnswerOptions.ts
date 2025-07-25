@@ -1,4 +1,4 @@
-import { Effectiveness } from '@/lib/utils';
+import { Effectiveness } from '@/shared/services/utils';
 
 export const quizAnswerOptions = [
   {

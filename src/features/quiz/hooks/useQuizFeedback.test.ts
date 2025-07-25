@@ -1,12 +1,12 @@
 import { renderHook, act } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { useQuizFeedback } from './useQuizFeedback';
-import { Effectiveness } from '@/lib/utils';
+import { Effectiveness } from '@/shared/services/utils';
 
 const attacker = { id: 1, name: 'Bulbasaur', type: 'Grass' };
 const defender = { id: 2, name: 'Squirtle', type: 'Water' };
 
-vi.mock('@/lib/utils', async (importOriginal) => {
+vi.mock('@/shared/services/utils', async (importOriginal) => {
   const actual = await importOriginal();
   return {
     ...actual,

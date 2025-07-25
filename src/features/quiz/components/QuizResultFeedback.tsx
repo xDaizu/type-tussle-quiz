@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card } from '@/components/ui/card';
+import { Card } from '@/shared/components/ui/ui/card';
 import { quizAnswerOptions } from '@/lib/quizAnswerOptions';
-import { Effectiveness } from '@/lib/utils';
+import { Effectiveness } from '@/shared/services/utils';
 
 interface QuizResultFeedbackProps {
   showResult: {

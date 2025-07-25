@@ -2,7 +2,7 @@ import React from 'react';
 import QuizGameContainer from './QuizGameContainer';
 import QuizGameOverScreen from './QuizGameOverScreen';
 import QuizActiveGame from './QuizActiveGame';
-import { getResultPhrase } from '@/lib/utils';
+import { getResultPhrase } from '@/shared/services/utils';
 import { useQuizGame } from '@/hooks/useQuizGame';
 import { useQuizFeedback } from '@/hooks/useQuizFeedback';
 import { useQuizTimer } from '@/hooks/useQuizTimer';

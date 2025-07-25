@@ -1,8 +1,8 @@
 import React from 'react';
-import { Card } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Card } from '@/shared/components/ui/ui/card';
+import { Badge } from '@/shared/components/ui/ui/badge';
 import { Trophy, RotateCcw } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/shared/components/ui/ui/button';
 
 interface QuizGameOverScreenProps {
   score: number;

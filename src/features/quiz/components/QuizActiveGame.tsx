@@ -3,7 +3,7 @@ import ScoreDisplay from './ScoreDisplay';
 import BattleArena from '@/features/battle/components/BattleArena';
 import QuizResultFeedback from './QuizResultFeedback';
 import QuizAnswerSection from './QuizAnswerSection';
-import { Effectiveness } from '@/lib/utils';
+import { Effectiveness } from '@/shared/services/utils';
 import { quizAnswerOptions } from '@/lib/quizAnswerOptions';
 
 interface QuizActiveGameProps {

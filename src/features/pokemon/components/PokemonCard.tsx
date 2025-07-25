@@ -1,4 +1,4 @@
-import { Card } from '@/components/ui/card';
+import { Card } from '@/shared/components/ui/ui/card';
 import { useState } from 'react';
 
 // Import type icons

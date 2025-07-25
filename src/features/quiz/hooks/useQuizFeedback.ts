@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getTypeEffectiveness, Effectiveness } from '@/lib/utils';
+import { getTypeEffectiveness } from '@/shared/services/utils';
 import { PokemonType } from '@/features/pokemon/types/PokemonType';
 import { Pokemon } from './useQuizGame';
 
