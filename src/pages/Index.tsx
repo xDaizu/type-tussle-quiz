@@ -1,12 +1,7 @@
-import QuizGameContainer from '@/features/quiz/components/QuizGameContainer';
-import QuizActiveGame from '@/features/quiz/components/QuizActiveGame';
+import PokemonQuiz from '@/features/quiz/components/PokemonQuiz';
 
 const Index = () => {
-  return (
-    <QuizGameContainer gameOver={false}>
-      <QuizActiveGame />
-    </QuizGameContainer>
-  );
+  return <PokemonQuiz />;
 };
 
 export default Index;

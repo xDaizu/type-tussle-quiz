@@ -47,9 +47,21 @@ export function useQuizTimer({
     // Set up timeout for auto-advance
     timeoutRef.current = setTimeout(manualAdvance, showResult.correct ? 1000 : 2500);
 
-    // Set up click-to-skip
-    const handleClick = () => manualAdvance();
-    window.addEventListener('click', handleClick);
+    // Set up click-to-skip only for the result feedback area, not globally
+    const handleClick = (e: MouseEvent) => {
+      // Only advance if clicking on the result feedback area, not on buttons
+      const target = e.target as HTMLElement;
+      if (target.closest('button') || target.closest('[role="button"]')) {
+        return; // Don't advance if clicking on interactive elements
+      }
+      manualAdvance();
+    };
+    
+    // Add listener only to result feedback area, not globally
+    const resultFeedback = document.querySelector('[data-result-feedback]');
+    if (resultFeedback) {
+      resultFeedback.addEventListener('click', handleClick);
+    }
 
     // Cleanup
     return () => {
@@ -57,7 +69,9 @@ export function useQuizTimer({
         clearTimeout(timeoutRef.current);
         timeoutRef.current = null;
       }
-      window.removeEventListener('click', handleClick);
+      if (resultFeedback) {
+        resultFeedback.removeEventListener('click', handleClick);
+      }
       clearTimeout(enableSkip);
     };
   }, [showResult, manualAdvance, currentRound, totalRounds]);

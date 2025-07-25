@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getTypeEffectiveness } from '@/shared/services/utils';
+import { getTypeEffectiveness, Effectiveness } from '@/shared/services/utils';
 import { PokemonType } from '@/features/pokemon/types/PokemonType';
 import { Pokemon } from './useQuizGame';
 
@@ -28,6 +28,12 @@ export function useQuizFeedback(attacker: Pokemon | null, defender: Pokemon | nu
   useEffect(() => {
     if (!showResult) setSelectedEffectiveness(null);
   }, [showResult]);
+
+  // Reset feedback when Pokemon change (new battle)
+  useEffect(() => {
+    setShowResult(null);
+    setSelectedEffectiveness(null);
+  }, [attacker, defender]);
 
   const handleAnswer = (selected: Effectiveness) => {
     if (!attacker || !defender || showResult) return;

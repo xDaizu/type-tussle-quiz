@@ -26,7 +26,7 @@ const getEffectivenessText = (effectiveness: Effectiveness) => {
 const QuizResultFeedback: React.FC<QuizResultFeedbackProps> = ({ showResult, selectedEffectiveness, attacker, feedbackText }) => {
   const correctOption = quizAnswerOptions.find(option => option.effectiveness === showResult.effectiveness);
   return (
-    <Card className="mt-6 p-6 text-center shadow-card animate-bounce-in">
+    <Card className="mt-6 p-6 text-center shadow-card animate-bounce-in" data-result-feedback>
       <div className={`text-2xl font-bold mb-2 text-${showResult.correct ? 'super-effective' : 'not-very-effective'}`}>
         {showResult.correct ? '  Correct!' : '  Wrong!'}
       </div>

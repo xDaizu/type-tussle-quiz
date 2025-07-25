@@ -4,7 +4,7 @@ import QuizAnswerButton from './QuizAnswerButton';
 interface QuizAnswerOption {
   effectiveness: number;
   label: string;
-  multiplier: number;
+  multiplier: string;
   gradientClass?: string;
   textColorClass?: string;
   ringClass?: string;

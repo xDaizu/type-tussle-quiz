@@ -31,31 +31,37 @@ const QuizActiveGame: React.FC<QuizActiveGameProps> = ({
   handleAnswer,
   setScore,
   feedbackText,
-}) => (
-  <>
-    <ScoreDisplay round={currentRound} score={score} totalRounds={totalRounds} />
-    {attacker && defender && (
-      <BattleArena attacker={attacker} defender={defender} showResult={!!showResult} />
-    )}
-    <div className="min-h-[180px] overflow-hidden transition-all duration-300">
-      {showResult ? (
-        <QuizResultFeedback
-          showResult={showResult}
-          selectedEffectiveness={selectedEffectiveness}
-          attacker={attacker}
-          feedbackText={feedbackText}
-        />
+}) => {
+  return (
+    <>
+      <ScoreDisplay round={currentRound} score={score} totalRounds={totalRounds} />
+      {attacker && defender ? (
+        <BattleArena attacker={attacker} defender={defender} showResult={showResult} />
       ) : (
-        <QuizAnswerSection
-          options={quizAnswerOptions}
-          onAnswer={(effectiveness) => {
-            const isCorrect = handleAnswer(effectiveness);
-            if (isCorrect) setScore(score + 1);
-          }}
-        />
+        <div className="p-4 text-center">
+          <p>Loading Pokemon...</p>
+        </div>
       )}
-    </div>
-  </>
-);
+      <div className="min-h-[180px] overflow-hidden transition-all duration-300">
+        {showResult ? (
+          <QuizResultFeedback
+            showResult={showResult}
+            selectedEffectiveness={selectedEffectiveness}
+            attacker={attacker}
+            feedbackText={feedbackText}
+          />
+        ) : (
+          <QuizAnswerSection
+            options={quizAnswerOptions}
+            onAnswer={(effectiveness) => {
+              const isCorrect = handleAnswer(effectiveness);
+              if (isCorrect) setScore(score + 1);
+            }}
+          />
+        )}
+      </div>
+    </>
+  );
+};
 
 export default QuizActiveGame; 
