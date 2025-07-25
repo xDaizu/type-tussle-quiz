@@ -4,7 +4,7 @@ import BattleArena from '@/features/battle/components/BattleArena';
 import QuizResultFeedback from './QuizResultFeedback';
 import QuizAnswerSection from './QuizAnswerSection';
 import { Effectiveness } from '@/shared/services/utils';
-import { quizAnswerOptions } from '@/lib/quizAnswerOptions';
+import { quizAnswerOptions } from '@/features/quiz/config/quizAnswerOptions';
 
 interface QuizActiveGameProps {
   currentRound: number;

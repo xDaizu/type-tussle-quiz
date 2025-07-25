@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from '@/shared/components/ui/ui/card';
-import { quizAnswerOptions } from '@/lib/quizAnswerOptions';
+import { quizAnswerOptions } from '@/features/quiz/config/quizAnswerOptions';
 import { Effectiveness } from '@/shared/services/utils';
 
 interface QuizResultFeedbackProps {
