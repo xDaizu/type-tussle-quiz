@@ -1,175 +1,58 @@
-import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Trophy, RotateCcw } from 'lucide-react';
-
 import BattleArena from './BattleArena';
 import ScoreDisplay from './ScoreDisplay';
-import { getTypeEffectiveness, Effectiveness, getResultPhrase } from '@/lib/utils';
-import { PokemonType } from '@/types/PokemonType';
-import { PokemonProvider } from '@/lib/PokemonProvider';
+import { getResultPhrase, Effectiveness } from '@/lib/utils';
 import { quizAnswerOptions } from '@/lib/quizAnswerOptions';
 import QuizAnswerButton from './QuizAnswerButton';
 import { FeedbackFlavourProvider } from '@/lib/FeedbackProvider';
-
-
-type Pokemon = ReturnType<typeof PokemonProvider.getAll>[number];
-type EffectivenessType = Effectiveness;
+import { useQuizGame } from '@/hooks/useQuizGame';
+import { useQuizFeedback } from '@/hooks/useQuizFeedback';
+import { useQuizTimer } from '@/hooks/useQuizTimer';
+import { useQuizNavigation } from '@/hooks/useQuizNavigation';
 
 const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
-  const [currentRound, setCurrentRound] = useState(1);
-  const [score, setScore] = useState(0);
-  const [attacker, setAttacker] = useState<Pokemon | null>(null);
-  const [defender, setDefender] = useState<Pokemon | null>(null);
-  const [gameOver, setGameOver] = useState(false);
-  const [showResult, setShowResult] = useState<{correct: boolean, effectiveness: EffectivenessType} | null>(null);
-  const [selectedEffectiveness, setSelectedEffectiveness] = useState<EffectivenessType | null>(null);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const skipEnabled = useRef(false);
+  const game = useQuizGame(totalRounds);
+  const feedback = useQuizFeedback(game.attacker, game.defender);
+  const navigation = useQuizNavigation({
+    currentRound: game.currentRound,
+    totalRounds: game.totalRounds,
+    setCurrentRound: game.setCurrentRound,
+    setGameOver: game.setGameOver,
+    generateBattle: game.generateBattle,
+    resetGame: game.resetGame,
+  });
 
-  const pokemonList = PokemonProvider.getAll();
-
-  const getRandomType = (): PokemonType => {
-    const types = Object.values(PokemonType);
-    return types[Math.floor(Math.random() * types.length)];
-  };
-
-  const generateBattle = () => {
-    let randomAttacker = null;
-    let randomDefender = null;
-    let attackerType: PokemonType;
-    let defenderType: PokemonType;
-
-    // Keep trying until we get a valid attacker
-    while (!randomAttacker) {
-      try {
-        attackerType = getRandomType();
-        randomAttacker = PokemonProvider.getRandomByType(attackerType);
-      } catch (e) {
-        // Try again
+  useQuizTimer({
+    showResult: feedback.showResult,
+    onAdvance: () => {
+      if (feedback.showResult) {
+        feedback.resetFeedback();
+        navigation.advanceRound();
       }
-    }
+    },
+    currentRound: game.currentRound,
+    totalRounds: game.totalRounds,
+  });
 
-    // Keep trying until we get a valid defender
-    while (!randomDefender) {
-      try {
-        defenderType = getRandomType();
-        randomDefender = PokemonProvider.getRandomByType(defenderType);
-      } catch (e) {
-        // Try again
-      }
-    }
-
-    setAttacker(randomAttacker);
-    setDefender(randomDefender);
-    setShowResult(null);
-  };
-
-  useEffect(() => {
-    generateBattle();
-  }, []);
-
-  useEffect(() => {
-    if (!showResult) return;
-
-    skipEnabled.current = false;
-    const enableSkip = setTimeout(() => { skipEnabled.current = true; }, 50);
-
-    const advance = () => {
-      if (!skipEnabled.current) return;
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-        timeoutRef.current = null;
-      }
-      if (currentRound >= totalRounds) {
-        setGameOver(true);
-      } else {
-        setCurrentRound(currentRound + 1);
-        generateBattle();
-      }
-      setShowResult(null); // Prevent double advance
-    };
-
-    // Set up timeout
-    timeoutRef.current = setTimeout(advance, showResult.correct ? 1000 : 2500);
-
-    // Set up click-to-skip
-    const handleClick = () => advance();
-    window.addEventListener('click', handleClick);
-
-    // Cleanup
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-        timeoutRef.current = null;
-      }
-      window.removeEventListener('click', handleClick);
-      clearTimeout(enableSkip);
-    };
-  }, [showResult, currentRound, totalRounds]);
-
-  useEffect(() => {
-    if (!showResult) setSelectedEffectiveness(null);
-  }, [showResult]);
-
-  const handleAnswer = (selectedEffectiveness: EffectivenessType) => {
-    if (!attacker || !defender || showResult) return;
-
-    const correctEffectiveness = getTypeEffectiveness(attacker.type as PokemonType, defender.type as PokemonType);
-    const isCorrect = selectedEffectiveness === correctEffectiveness;
-    setSelectedEffectiveness(selectedEffectiveness);
-    
-    if (isCorrect) {
-      setScore(prev => prev + 1);
-    }
-
-    setShowResult({ correct: isCorrect, effectiveness: correctEffectiveness });
-    // Timeout and click-to-skip handled in useEffect
-  };
-
-  const resetGame = () => {
-    setCurrentRound(1);
-    setScore(0);
-    setGameOver(false);
-    setShowResult(null);
-    generateBattle();
-  };
-
-  const getEffectivenessColor = (effectiveness: EffectivenessType) => {
-    switch (effectiveness) {
-      case Effectiveness.SuperEffective: return 'super-effective';
-      case Effectiveness.NotVeryEffective: return 'not-very-effective';
-      case Effectiveness.NoEffect: return 'no-effect';
-      default: return 'normal-effective';
-    }
-  };
-
-  const getEffectivenessText = (effectiveness: EffectivenessType) => {
-    switch (effectiveness) {
-      case Effectiveness.SuperEffective: return 'Super Effective!';
-      case Effectiveness.NotVeryEffective: return 'Not Very Effective...';
-      case Effectiveness.NoEffect: return 'It has no effect...';
-      default: return 'Normal effectiveness';
-    }
-  };
-
-  if (gameOver) {
-    const resultPhrase = getResultPhrase(score, 10);
+  if (game.gameOver) {
+    const resultPhrase = getResultPhrase(game.score, game.totalRounds);
     return (
       <div className="min-h-screen bg-arena-gradient flex items-center justify-center p-4">
         <Card className="p-8 max-w-md w-full text-center shadow-card animate-bounce-in">
           <Trophy className="w-16 h-16 mx-auto mb-4 text-accent" />
           <h1 className="text-3xl font-bold mb-4">Quiz Complete!</h1>
           <p className="text-xl mb-6">
-            Your Score: <span className="font-bold text-primary">{score}/10</span>
+            Your Score: <span className="font-bold text-primary">{game.score}/{game.totalRounds}</span>
           </p>
           <div className="mb-6">
             <Badge className="bg-super-effective text-white text-lg py-2 px-4">
               {resultPhrase}
             </Badge>
           </div>
-          <Button onClick={resetGame} className="w-full" size="lg">
+          <Button onClick={navigation.restartGame} className="w-full" size="lg">
             <RotateCcw className="w-4 h-4 mr-2" />
             Play Again
           </Button>
@@ -178,50 +61,48 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
     );
   }
 
+  const getEffectivenessText = (effectiveness: Effectiveness) => {
+    switch (effectiveness) {
+      case Effectiveness.SuperEffective: return 'Super Effective!';
+      case Effectiveness.NotVeryEffective: return 'Not Very Effective...';
+      case Effectiveness.NoEffect: return 'It has no effect...';
+      default: return 'Normal effectiveness';
+    }
+  };
+
   return (
     <div className="min-h-screen bg-arena-gradient p-4">
       <div className="max-w-4xl mx-auto">
-        <ScoreDisplay round={currentRound} score={score} totalRounds={totalRounds} />
-        
-        {attacker && defender && (
-          <BattleArena 
-            attacker={attacker} 
-            defender={defender}
-            showResult={showResult}
-          />
+        <ScoreDisplay round={game.currentRound} score={game.score} totalRounds={game.totalRounds} />
+        {game.attacker && game.defender && (
+          <BattleArena attacker={game.attacker} defender={game.defender} showResult={feedback.showResult} />
         )}
-
-        {/* Robust wrapper to prevent layout shift and scrollbar flicker */}
         <div className="min-h-[180px] overflow-hidden transition-all duration-300">
-          {showResult && (
+          {feedback.showResult && (
             <Card className="mt-6 p-6 text-center shadow-card animate-bounce-in">
-              <div className={`text-2xl font-bold mb-2 text-${getEffectivenessColor(showResult.effectiveness)}`}>
-                {showResult.correct ? '✅ Correct!' : '❌ Wrong!'}
+              <div className={`text-2xl font-bold mb-2 text-${feedback.showResult.correct ? 'super-effective' : 'not-very-effective'}`}>
+                {feedback.showResult.correct ? '✅ Correct!' : '❌ Wrong!'}
               </div>
               <p id="effectiveness-text" className="text-lg">
-                {showResult.correct ? (
+                {feedback.showResult.correct ? (
                   (() => {
-                    const correctOption = quizAnswerOptions.find(option => option.effectiveness === showResult.effectiveness);
+                    const correctOption = quizAnswerOptions.find(option => option.effectiveness === feedback.showResult.effectiveness);
                     return (
-                      <span
-                        className={`font-bold inline-block px-3 py-1 rounded drop-shadow ${correctOption?.gradientClass || ''} ${correctOption?.textColorClass || ''} ${correctOption?.ringClass || ''}`}
-                      >
-                        {getEffectivenessText(showResult.effectiveness)} (×{showResult.effectiveness})
+                      <span className={`font-bold inline-block px-3 py-1 rounded drop-shadow ${correctOption?.gradientClass || ''} ${correctOption?.textColorClass || ''} ${correctOption?.ringClass || ''}`}>
+                        {getEffectivenessText(feedback.showResult.effectiveness)} (×{feedback.showResult.effectiveness})
                       </span>
                     );
                   })()
                 ) : (
                   (() => {
-                    const correctOption = quizAnswerOptions.find(option => option.effectiveness === showResult.effectiveness);
+                    const correctOption = quizAnswerOptions.find(option => option.effectiveness === feedback.showResult.effectiveness);
                     return (
                       <>
                         <span className="line-through text-gray-400 mr-2">
-                          {selectedEffectiveness !== null ? getEffectivenessText(selectedEffectiveness) + ` (×${selectedEffectiveness})` : ''}
+                          {feedback.selectedEffectiveness !== null ? getEffectivenessText(feedback.selectedEffectiveness) + ` (×${feedback.selectedEffectiveness})` : ''}
                         </span>
-                        <span
-                          className={`font-bold inline-block px-3 py-1 rounded drop-shadow ${correctOption?.gradientClass || ''} ${correctOption?.textColorClass || ''} ${correctOption?.ringClass || ''}`}
-                        >
-                          {getEffectivenessText(showResult.effectiveness)} (×{showResult.effectiveness})
+                        <span className={`font-bold inline-block px-3 py-1 rounded drop-shadow ${correctOption?.gradientClass || ''} ${correctOption?.textColorClass || ''} ${correctOption?.ringClass || ''}`}>
+                          {getEffectivenessText(feedback.showResult.effectiveness)} (×{feedback.showResult.effectiveness})
                         </span>
                       </>
                     );
@@ -229,12 +110,11 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
                 )}
               </p>
               <p className="text-m">
-                {attacker ? FeedbackFlavourProvider.getFeedback(attacker.type, showResult.correct ? 'pass' : 'fail') : ''}
+                {game.attacker ? FeedbackFlavourProvider.getFeedback(game.attacker.type, feedback.showResult.correct ? 'pass' : 'fail') : ''}
               </p>
             </Card>
           )}
-
-          {!showResult && (
+          {!feedback.showResult && (
             <Card className="mt-2 p-2 shadow-card border-0">
               <h2 className="text-l font-bold mb-2 text-center text-foreground">
                 How effective is this attack?
@@ -245,7 +125,10 @@ const PokemonQuiz = ({ totalRounds = 10 }: { totalRounds?: number }) => {
                     key={option.effectiveness}
                     label={option.label}
                     multiplier={option.multiplier}
-                    onClick={() => handleAnswer(option.effectiveness)}
+                    onClick={() => {
+                      const isCorrect = feedback.handleAnswer(option.effectiveness);
+                      if (isCorrect) game.setScore(game.score + 1);
+                    }}
                     gradientClass={option.gradientClass}
                     textColorClass={option.textColorClass}
                     ringClass={option.ringClass}
