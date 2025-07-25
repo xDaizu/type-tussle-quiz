@@ -1,73 +1,47 @@
-# Welcome to your Lovable project
+# Type Tussle Quiz 🎮✨
+
+> **A modern, interactive web quiz game that challenges your knowledge of Pokémon type effectiveness!**
+
+Built with **React**, **TypeScript**, and **Tailwind CSS**, the app features animated battles, instant feedback, and a clean, modular architecture. Test your skills by predicting how effective different Pokémon types are against each other in a fun, visually engaging format. 🧠⚡️🔥🌱💧
+
+---
+
+🎥 This project was created for the Twitch channel [**lolochaa**](https://www.twitch.tv/lolochaa) — a Spanish channel where she usually plays Pokémon. ¡Síguela para más aventuras Pokémon! 🕹️🇪🇸
+
+---
+
+💖 **A special, wholesome thank you to [Pokémon Database](https://pokemondb.net/)** for generously hosting the Pokémon images we hotlink in this project. Your amazing resource helps trainers and fans everywhere — thank you for all you do! 🙏🎨
+
+---
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/141dfb8b-5b55-4456-88dc-31e80c304640
+## 📁 Feature-Based Folder Structure (2024 Migration)
 
-## How can I edit this code?
+This project uses a **feature-based folder structure** for improved maintainability, discoverability, and scalability.
 
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/141dfb8b-5b55-4456-88dc-31e80c304640) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+src/
+├── features/
+│   ├── quiz/        # Quiz game logic, UI, hooks, config
+│   ├── pokemon/     # Pokémon data, services, UI
+│   └── battle/      # Type effectiveness, battle UI/services
+├── shared/          # Shared UI components, services, types, config
+├── data/            # Static JSON data (types, feedback, Pokémon list)
+├── pages/           # Top-level route pages
+├── assets/          # Static assets (sprites, images)
 ```
 
-**Edit a file directly in GitHub**
+- **features/**: Each subfolder is a domain/feature (e.g., quiz, pokemon, battle) and contains its own `components/`, `hooks/`, `services/`, `types/`, and `config/` as needed.
+- **shared/**: Contains UI components (shadcn), utility services, global types, and app-level config used across features.
+- **data/**: Static JSON files for type effectiveness, feedback, Pokémon list, etc.
+- **pages/**: Route-level React components.
+- **assets/**: Images, sprites, and other static files.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+**Path Aliases:**
+- `@/features/*` → `src/features/*`
+- `@/shared/*`   → `src/shared/*`
+- `@/data/*`     → `src/data/*`
+- `@/assets/*`   → `src/assets/*`
 
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/141dfb8b-5b55-4456-88dc-31e80c304640) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+---Upda
