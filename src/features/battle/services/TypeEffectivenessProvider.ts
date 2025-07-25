@@ -6,7 +6,7 @@ export enum Effectiveness {
   SuperEffective = 2,
 }
 
-import typeStrength from './type.strength.json';
+import typeStrength from '@/data/type.strength.json';
 
 /**
  * Returns the effectiveness multiplier for an attacker's type against a defender's type.

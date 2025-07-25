@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export { getTypeEffectiveness, Effectiveness } from './TypeEffectivenessProvider';
+export { getTypeEffectiveness, Effectiveness } from '@/features/battle/services/TypeEffectivenessProvider';
 
 export function getResultPhrase(score: number, maxScore: number): string {
   // Clamp score between 0 and maxScore
