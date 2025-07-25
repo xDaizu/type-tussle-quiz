@@ -1,6 +1,6 @@
 import React from 'react';
 import ScoreDisplay from './ScoreDisplay';
-import BattleArena from './BattleArena';
+import BattleArena from '@/components/BattleArena';
 import QuizResultFeedback from './QuizResultFeedback';
 import QuizAnswerSection from './QuizAnswerSection';
 import { Effectiveness } from '@/lib/utils';

@@ -1,4 +1,4 @@
-import PokemonQuiz from '@/components/PokemonQuiz';
+import PokemonQuiz from '@/features/quiz/components/PokemonQuiz';
 
 const Index = () => {
   return <PokemonQuiz />;

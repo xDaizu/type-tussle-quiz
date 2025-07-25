@@ -24,7 +24,7 @@ describe('QuizActiveGame', () => {
   it('renders ScoreDisplay and BattleArena', () => {
     const { getByText } = render(<QuizActiveGame {...baseProps} />);
     expect(getByText('ScoreDisplay')).toBeInTheDocument();
-    expect(getByText('BattleArena')).toBeInTheDocument();
+    expect(getByText('Attacks')).toBeInTheDocument();
   });
 
   it('renders QuizResultFeedback when showResult is truthy', () => {
