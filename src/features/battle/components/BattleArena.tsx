@@ -3,7 +3,7 @@ import { PokemonType } from '@/features/pokemon/types/PokemonType';
 import PokemonCard from '@/features/pokemon/components/PokemonCard';
 import { Card } from '@/shared/components/ui/ui/card';
 import { typeColorMap } from '@/features/pokemon/components/PokemonCard';
-import { SpriteProvider } from '@/features/pokemon/services/SpriteProvider';
+import { SpriteService } from '@/features/pokemon/services/SpriteService';
 
 interface BattleArenaProps {
   attacker: {
@@ -26,7 +26,7 @@ interface BattleArenaProps {
 
 const BattleArena = ({ attacker, defender, showResult }: BattleArenaProps) => {
   const arrowColor = typeColorMap[attacker.type as keyof typeof typeColorMap] || 'primary';
-  const typeSymbol = SpriteProvider.getTypeSpriteSymbol(attacker.type);
+  const typeSymbol = SpriteService.getTypeSpriteSymbol(attacker.type);
   return (
     <Card className="p-2 shadow-card border-0">
        {/* Battle Description */}
