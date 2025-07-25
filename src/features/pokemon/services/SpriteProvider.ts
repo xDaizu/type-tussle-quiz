@@ -1,7 +1,7 @@
 // SpriteProvider.ts
 
 import { PokemonType } from '@/types/PokemonType';
-import { AssetHelper } from './AssetHelper';
+import { AssetHelper } from '@/shared/services/AssetHelper';
 
 // Helper to capitalize the first letter
 function capitalize(str: string): string {

@@ -2,7 +2,7 @@ import { Card } from '@/components/ui/card';
 import { useState } from 'react';
 
 // Import type icons
-import { SpriteProvider } from '@/lib/SpriteProvider';
+import { SpriteProvider } from '@/features/pokemon/services/SpriteProvider';
 import { PokemonType } from '@/types/PokemonType';
 
 export const typeColorMap = {

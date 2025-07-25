@@ -1,4 +1,4 @@
-import { PokemonType } from '@/types/PokemonType';
+import { PokemonType } from '@/features/pokemon/types/PokemonType';
 export enum Effectiveness {
   NoEffect = 0,
   NotVeryEffective = 0.5,

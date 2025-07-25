@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getTypeEffectiveness, Effectiveness } from '@/lib/utils';
-import { PokemonType } from '@/types/PokemonType';
+import { PokemonType } from '@/features/pokemon/types/PokemonType';
 import { Pokemon } from './useQuizGame';
 
 export type EffectivenessType = Effectiveness;

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { SpriteProvider } from './SpriteProvider';
-import { PokemonType } from '@/types/PokemonType';
+import { PokemonType } from '@/features/pokemon/types/PokemonType';
 
 describe('SpriteProvider', () => {
   it('getPokemonHomeSprite returns correct URL', () => {

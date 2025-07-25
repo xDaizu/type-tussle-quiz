@@ -1,9 +1,9 @@
 import { ChevronRight } from 'lucide-react';
-import { PokemonType } from '@/types/PokemonType';
-import PokemonCard from './PokemonCard';
+import { PokemonType } from '@/features/pokemon/types/PokemonType';
+import PokemonCard from '@/features/pokemon/components/PokemonCard';
 import { Card } from '@/components/ui/card';
-import { typeColorMap } from './PokemonCard';
-import { SpriteProvider } from '@/lib/SpriteProvider';
+import { typeColorMap } from '@/features/pokemon/components/PokemonCard';
+import { SpriteProvider } from '@/features/pokemon/services/SpriteProvider';
 
 interface BattleArenaProps {
   attacker: {

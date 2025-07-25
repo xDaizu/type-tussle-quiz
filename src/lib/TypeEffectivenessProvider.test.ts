@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { getTypeEffectiveness, Effectiveness } from './TypeEffectivenessProvider';
-import { PokemonType } from '@/types/PokemonType';
+import { PokemonType } from '@/features/pokemon/types/PokemonType';
 
 describe('TypeEffectivenessProvider', () => {
   it('returns SuperEffective (2) for bug vs dark', () => {

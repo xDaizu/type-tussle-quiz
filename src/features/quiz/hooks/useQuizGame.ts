@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { PokemonType } from '@/types/PokemonType';
-import { PokemonProvider } from '@/lib/PokemonProvider';
+import { PokemonType } from '@/features/pokemon/types/PokemonType';
+import { PokemonProvider } from '@/features/pokemon/services/PokemonProvider';
 
 export type Pokemon = ReturnType<typeof PokemonProvider.getAll>[number];
 

@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { PokemonProvider } from './PokemonProvider';
+import { PokemonType } from '@/features/pokemon/types/PokemonType';
 
 
 describe('PokemonProvider', () => {

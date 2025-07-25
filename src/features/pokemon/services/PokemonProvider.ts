@@ -1,5 +1,5 @@
-import { PokemonType } from '@/types/PokemonType';
-import pokemonListJson from './pokemonList.json' assert { type: 'json' };
+import { PokemonType } from '@/features/pokemon/types/PokemonType';
+import pokemonListJson from '@/data/pokemonList.json';
 import { SpriteProvider } from './SpriteProvider';
 
 export class PokemonProvider {
