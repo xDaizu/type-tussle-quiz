@@ -1,0 +1,9 @@
+export const GAME_CONFIG = {
+  DEFAULT_TOTAL_ROUNDS: 10,
+  MAX_BATTLE_GENERATION_ATTEMPTS: 10,
+  RESULT_DISPLAY_DURATION: 2000, // ms
+  SKIP_DELAY: 500, // ms
+  MIN_ROUNDS_FOR_SKIP: 1,
+} as const;
+
+export type GameConfig = typeof GAME_CONFIG; 

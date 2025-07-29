@@ -12,11 +12,13 @@
       "@/shared/*": ["./src/shared/*"],
       "@/data/*": ["./src/data/*"]
     },
-    "noImplicitAny": false,
-    "noUnusedParameters": false,
+    "noImplicitAny": true,
+    "noUnusedParameters": true,
     "skipLibCheck": true,
     "allowJs": true,
-    "noUnusedLocals": false,
-    "strictNullChecks": false
+    "noUnusedLocals": true,
+    "strictNullChecks": true,
+    "strict": true,
+    "exactOptionalPropertyTypes": true
   }
 }

@@ -3,8 +3,8 @@ import { describe, it, expect } from 'vitest';
 import { useQuizFeedback } from './useQuizFeedback';
 import { Effectiveness } from '@/shared/services/utils';
 
-const attacker = { id: 1, name: 'Bulbasaur', type: 'Grass' };
-const defender = { id: 2, name: 'Squirtle', type: 'Water' };
+const attacker = { id: '1', name: 'Bulbasaur', type: 'Grass', sprite: 'bulbasaur.png' };
+const defender = { id: '2', name: 'Squirtle', type: 'Water', sprite: 'squirtle.png' };
 
 vi.mock('@/shared/services/utils', async (importOriginal) => {
   const actual = await importOriginal();

@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { PokemonType } from '@/features/pokemon/types/PokemonType';
-import { PokemonService } from '@/features/pokemon/services/PokemonService';
-
-export type Pokemon = ReturnType<typeof PokemonService.getAll>[number];
+import { PokemonService, type Pokemon } from '@/features/pokemon/services/PokemonService';
+import { InvalidBattleGenerationError } from '@/shared/types/Errors';
 
 export interface QuizGameState {
   currentRound: number;
@@ -39,45 +38,60 @@ export function useQuizGame(totalRounds: number = 10): QuizGameState {
   const [defender, setDefender] = useState<Pokemon | null>(null);
   const [gameOver, setGameOver] = useState(false);
 
-  const pokemonList = PokemonService.getAll();
-
-  const getRandomType = (): PokemonType => {
+  const getRandomType = useCallback((): PokemonType => {
     const types = Object.values(PokemonType);
     return types[Math.floor(Math.random() * types.length)];
-  };
+  }, []);
 
-  const generateBattle = () => {
-    let randomAttacker = null;
-    let randomDefender = null;
-    let attackerType: PokemonType;
-    let defenderType: PokemonType;
-
-    while (!randomAttacker) {
-      try {
-        attackerType = getRandomType();
-        randomAttacker = PokemonService.getRandomByType(attackerType);
-      } catch (e) {
-        // ignore error, will retry
+  const generateBattle = useCallback(() => {
+    const maxAttempts = 50; // Increased for better reliability
+    let attempts = 0;
+    
+    // Generate attacker
+    let randomAttacker: Pokemon | null = null;
+    while (!randomAttacker && attempts < maxAttempts) {
+      const attackerType = getRandomType();
+      const attackerResult = PokemonService.getRandomByType(attackerType);
+      
+      if (attackerResult.success) {
+        randomAttacker = attackerResult.data;
       }
+      attempts++;
     }
-    while (!randomDefender) {
-      try {
-        defenderType = getRandomType();
-        randomDefender = PokemonService.getRandomByType(defenderType);
-      } catch (e) {
-        // ignore error, will retry
+    
+    if (!randomAttacker) {
+      // Fallback to random Pokemon if type-specific generation fails
+      randomAttacker = PokemonService.getRandom();
+    }
+    
+    // Generate defender
+    attempts = 0;
+    let randomDefender: Pokemon | null = null;
+    while (!randomDefender && attempts < maxAttempts) {
+      const defenderType = getRandomType();
+      const defenderResult = PokemonService.getRandomByType(defenderType);
+      
+      if (defenderResult.success) {
+        randomDefender = defenderResult.data;
       }
+      attempts++;
     }
+    
+    if (!randomDefender) {
+      // Fallback to random Pokemon if type-specific generation fails
+      randomDefender = PokemonService.getRandom();
+    }
+    
     setAttacker(randomAttacker);
     setDefender(randomDefender);
-  };
+  }, [getRandomType]);
 
-  const resetGame = () => {
+  const resetGame = useCallback(() => {
     setCurrentRound(1);
     setScore(0);
     setGameOver(false);
     generateBattle();
-  };
+  }, [generateBattle]);
 
   return {
     currentRound,
